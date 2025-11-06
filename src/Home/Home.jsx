@@ -12,6 +12,7 @@ const WildbirdLanding = () => {
       backgroundColor: '#fff'
     }}>
       <style>{`
+        /* --- Estilos Existentes --- */
         .animated-text-line {
           background-color: #152139;
           color: #fff;
@@ -90,30 +91,6 @@ const WildbirdLanding = () => {
           color: #F78ACE;
         }
 
-        .logo-placeholder {
-          width: 50px;
-          height: 50px;
-          background-color: #f0f0f0;
-          border: 2px dashed #152139;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 10px;
-          color: #152139;
-        }
-
-        .w-placeholder {
-          width: 400px;
-          height: 300px;
-          background-color: #f0f0f0;
-          border: 2px dashed #152139;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 14px;
-          color: #152139;
-        }
-
         .section-title {
           font-size: 14px;
           font-weight: 700;
@@ -138,27 +115,42 @@ const WildbirdLanding = () => {
         .service-item:hover {
           color: #F78ACE;
         }
+        /* --- Fin Estilos Existentes --- */
 
-        @media (max-width: 768px) {
+        /* --- Estilos Específicos para Móviles (<768px) --- */
+        @media (max-width: 767.98px) {
           .hide-mobile {
             display: none !important;
           }
 
-          .col-md-8 {
-            text-align: center !important;
+          /* Asegura que el contenedor de texto del Hero no se centre en móvil */
+          .hero-text-col {
+            text-align: left !important;
           }
 
-          h2 {
-            font-size: 32px !important;
+          /* Reduce el tamaño del título h2 en el Hero Section */
+          .hero-title {
+            font-size: 18px !important; /* Tamaño de fuente más pequeño */
+            line-height: 1.2 !important;
+            margin-bottom: 15px !important;
           }
 
-          .service-item {
-            font-size: 16px;
+          /* Ajusta el padding de la sección hero para darle espacio */
+          .hero-section {
+            padding-top: 20px !important;
+            padding-bottom: 20px !important;
+          }
+          
+          /* Ajusta el botón */
+          .custom-button {
+             padding: 8px 15px;
+             font-size: 14px;
+             letter-spacing: 1px;
           }
         }
       `}</style>
 
-      {/* Header */}
+      {/* Header y Navigation (Sin cambios, pero responsive con hide-mobile) */}
       <header className="py-3 border-bottom" style={{ borderColor: '#152139' }}>
         <div className="container">
           <div className="row align-items-center">
@@ -167,7 +159,7 @@ const WildbirdLanding = () => {
               <Instagram size={20} className="social-icon" />
               <Linkedin size={20} className="social-icon" />
             </div>
-            <div className="col-md-8 text-center">
+            <div className="col-12 col-md-8 text-center">
                 <img src={Logo} alt="Wildbird Logo" style={{ height: '40px' }} />
             </div>
             <div className="col-md-2 text-end hide-mobile">
@@ -179,12 +171,12 @@ const WildbirdLanding = () => {
         </div>
       </header>
 
-      {/* Navigation */}
       <nav className="py-3 border-bottom" style={{ borderColor: '#152139' }}>
         <div className="container">
+          {/* La navegación ya es responsive ya que usa col-3 y no col-md-X */}
           <div className="row text-center">
             <div className="col-3">
-              <a href="#nosotros" className="nav-link-custom">SOBRE NOSOTROS</a>
+              <a href="#nosotros" className="nav-link-custom">NOSOTROS</a>
             </div>
             <div className="col-3">
               <a href="#servicios" className="nav-link-custom">SERVICIOS</a>
@@ -199,13 +191,17 @@ const WildbirdLanding = () => {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="py-3">
+      {/* Hero Section (Sección Principal) - MODIFICADA */}
+      <section className="py-5 hero-section">
         <div className="container">
+          {/* row no-gutters para eliminar el padding si es necesario, pero con align-items-center y col-6 ya funciona */}
           <div className="row align-items-center">
-            <div className="col-md-6">
-              <h2 style={{ 
-                fontSize: '42px', 
+            
+            {/* Contenedor de Texto y Botón */}
+            {/* Usamos col-6 para forzar que ocupe la mitad del espacio incluso en móviles (XS) */}
+            <div className="col-6 hero-text-col">
+              <h2 className="hero-title" style={{ 
+                fontSize: '42px', // Valor por defecto para escritorio
                 fontWeight: '700',
                 lineHeight: '1.2',
                 marginBottom: '30px'
@@ -218,25 +214,36 @@ const WildbirdLanding = () => {
                 <span>CONÓCENOS</span>
               </button>
             </div>
-            <div className="col-md-6 text-center">
-                <img src={W} alt="Wildbird W" style={{ maxWidth: '100%', height: 'auto' }} />
+            
+            {/* Contenedor de Imagen W */}
+            {/* Usamos col-6 para forzar que ocupe la mitad del espacio incluso en móviles (XS) */}
+            <div className="col-6 text-center">
+              {/* Ajustamos el estilo de la imagen W para que sea más pequeña en móvil */}
+              <img 
+                src={W} 
+                alt="Wildbird W" 
+                style={{ 
+                  maxWidth: '100%', 
+                  height: 'auto', 
+                  maxHeight: '300px' // Limita la altura para que no sea muy grande en la fila
+                }} 
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Animated Text Line */}
+      {/* Animated Text Line y About & Services Section (Sin cambios relevantes) */}
       <div className="animated-text-line">
         <div className="animated-text-content">
           DISEÑO GRÁFICO DE ALTA CALIDAD / MARKETING QUE FUNCIONA / IMPULSANDO LA CREATIVIDAD, DOMINANDO LA ESTRATEGIA / DISEÑO GRÁFICO DE ALTA CALIDAD / MARKETING QUE FUNCIONA / IMPULSANDO LA CREATIVIDAD, DOMINANDO LA ESTRATEGIA / 
         </div>
       </div>
 
-      {/* About & Services Section */}
       <section className="py-5" style={{ backgroundColor: '#f8f9fa' }}>
         <div className="container">
           <div className="row">
-            <div className="col-md-6">
+            <div className="col-12 col-md-6 mb-4 mb-md-0"> {/* Usamos col-12 en móvil para apilar */}
               <h3 className="section-title">SOBRE NOSOTROS</h3>
               <p style={{ lineHeight: '1.8', fontSize: '15px' }}>
                 Somos un equipo apasionado y dedicado a lo que hacemos, motivados por el éxito de nuestros clientes. En un mundo saturado de información, analizamos meticulosamente lo que es mejor para su negocio. Al estudiar a su competencia, le ayudamos a forjar una presencia distintiva y a posicionarse estratégicamente en el mercado.
@@ -245,7 +252,7 @@ const WildbirdLanding = () => {
                 <span>CONOCÉ NUESTRO TRABAJO</span>
               </button>
             </div>
-            <div className="col-md-6">
+            <div className="col-12 col-md-6"> {/* Usamos col-12 en móvil para apilar */}
               <h3 className="section-title">NUESTROS SERVICIOS</h3>
               <a href="#web-design" className="service-item d-block">WEB DESIGN</a>
               <a href="#brand-design" className="service-item d-block">BRAND DESIGN</a>
