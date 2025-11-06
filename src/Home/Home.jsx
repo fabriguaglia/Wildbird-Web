@@ -1,9 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Facebook, Instagram, Linkedin } from 'lucide-react';
+import { FaPalette, FaCode, FaBook, FaBullhorn, FaEnvelope, FaHashtag } from 'react-icons/fa';
 import Logo from './wildlogo.png';
 import W from './W.jpeg';
 import { gsap } from 'gsap'; 
+
+// --- Tus importaciones de logos de clientes irían aquí ---
+// Ejemplo:
+// import TrekantsLogo from './logos/trekants.png';
+// import DurexLogo from './logos/durex.png';
+// ...etc.
 
 // Lista de palabras y sus colores (usando tus tonos)
 const WORDS = [
@@ -248,6 +255,72 @@ const Home = () => {
             transform-origin: bottom center; 
         }
 
+        /* Service Cards Styles */
+        .service-card-dark {
+          height: 100%;
+          padding: 30px 25px;
+          background: transparent;
+          transition: all 0.3s ease;
+        }
+
+        .service-card-dark:hover {
+          transform: translateY(-5px);
+        }
+
+        .service-icon-dark {
+          color: #F78ACE;
+          margin-bottom: 20px;
+          transition: transform 0.3s ease;
+        }
+
+        .service-card-dark:hover .service-icon-dark {
+          transform: scale(1.1);
+        }
+
+        .service-card-title-dark {
+          font-size: 16px;
+          font-weight: 700;
+          letter-spacing: 1.5px;
+          color: #F78ACE;
+          margin-bottom: 15px;
+        }
+
+        .service-card-text-dark {
+          font-size: 14px;
+          line-height: 1.7;
+          color: #fff;
+        }
+
+        .custom-button-light {
+          display: inline-block;
+          border: none;
+          padding: 12px 28px;
+          color: #fff;
+          text-decoration: none;
+          font-weight: 600;
+          letter-spacing: 1.5px;
+          font-size: 17px;
+          position: relative;
+          background: transparent;
+        }
+
+        .custom-button-light::before {
+          content: '';
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translateX(-50%);
+          width: calc(100% - 56px); 
+          height: 0.5em;
+          background-color: #F78ACE;
+          z-index: 0;
+        }
+
+        .custom-button-light span {
+          position: relative;
+          z-index: 2;
+        }
+
         /* Ajuste para acercar texto al centro solo en desktop */
         @media (min-width: 768px) {
           .hero-text-col {
@@ -315,6 +388,20 @@ const Home = () => {
           /* Compensa el padding eliminado de la sección para el texto */
           .hero-text-col {
             padding-left: 15px !important;
+          }
+
+          /* --- NUEVO ESTILO PARA LOGOS DE CLIENTES --- */
+          .client-logo {
+            max-width: 100%;
+            height: auto;
+            max-height: 45px; /* Ajusta la altura máxima de los logos */
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+          }
+          .client-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
           }
         }
       `}</style>
@@ -416,7 +503,7 @@ const Home = () => {
       {/* Animated Text Line */}
       <div className="animated-text-line">
         <div className="animated-text-content">
-            DISEÑO GRÁFICO DE ALTA CALIDAD &nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp; MARKETING QUE FUNCIONA &nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp; IMPULSANDO LA CREATIVIDAD, DOMINANDO LA ESTRATEGIA &nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp; DISEÑO GRÁFICO DE ALTA CALIDAD &nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp; MARKETING QUE FUNCIONA &nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp; IMPULSANDO LA CREATIVIDAD, DOMINANDO LA ESTRATEGIA &nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp; 
+            DISEÑO GRÁFICO DE ALTA CALIDAD &nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&V-da;&nbsp;&nbsp;&nbsp; MARKETING QUE FUNCIONA &nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp; IMPULSANDO LA CREATIVIDAD, DOMINANDO LA ESTRATEGIA &nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp; DISEÑO GRÁFICO DE ALTA CALIDAD &nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp; MARKETING QUE FUNCIONA &nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp; IMPULSANDO LA CREATIVIDAD, DOMINANDO LA ESTRATEGIA &nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp; 
         </div>
       </div>
 
@@ -433,8 +520,8 @@ const Home = () => {
                 <span>CONOCÉ NUESTRO TRABAJO</span>
               </button>
             </div>
-            <div id='servicios' className="col-12 col-md-6">
-              <h3 className="section-title">NUESTROS SERVICIOS</h3>
+            <div className="col-12 col-md-6">
+              <h3 className="section-title">ESPECIALIDADES</h3>
               <p className="service-item d-block">WEB DESIGN</p>
               <p className="service-item d-block">BRAND DESIGN</p>
               <p className="service-item d-block">EDITORIAL DESIGN</p>
@@ -449,6 +536,181 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Services Cards Section */}
+      <section id='servicios' className="py-5" style={{ backgroundColor: '#152139' }}>
+        <div className="container">
+          
+          {/* --- TÍTULO MODIFICADO --- */}
+          <h2 style={{ 
+            fontSize: '28px', 
+            fontWeight: '600', 
+            color: '#fff',
+            letterSpacing: '2px',
+            textTransform: 'uppercase', // Para consistencia
+            // --- LÍNEAS AGREGADAS ---
+            paddingBottom: '15px',
+            borderBottom: '1px solid #fff', // La línea blanca
+            marginBottom: '30px' // Mantenemos tu margen original
+          }}>
+            NUESTROS SERVICIOS
+          </h2>
+          {/* --- FIN TÍTULO MODIFICADO --- */}
+
+          <div className="row g-4">
+            {/* Brand Design Card */}
+            <div className="col-12 col-md-6 col-lg-4">
+              <div className="service-card-dark">
+                <div className="service-icon-dark">
+                  <FaPalette size={50} color='white'/>
+                </div>
+                <h3 className="service-card-title-dark">BRAND DESIGN</h3>
+                <p className="service-card-text-dark">
+                  Creamos branding de alto impacto y logos adaptados a tus necesidades. Escuchamos tu visión y te brindamos asesoramiento experto para que termines con una identidad de marca de la que te sientas orgulloso, una que realmente represente tu negocio.
+                </p>
+              </div>
+            </div>
+
+            {/* Web Design Card */}
+            <div className="col-12 col-md-6 col-lg-4">
+              <div className="service-card-dark">
+                <div className="service-icon-dark">
+                  <FaCode size={50} color='white'/>
+                </div>
+                <h3 className="service-card-title-dark">WEB DESIGN & DEVELOP</h3>
+                <p className="service-card-text-dark">
+                  Diseñamos sitios web de primer nivel que generan resultados, ya sea aumentando ventas o capturando clientes potenciales. Nuestros sitios web están diseñados para captar la atención y guiar a tus clientes potenciales hacia la acción.
+                </p>
+              </div>
+            </div>
+
+            {/* Editorial Design Card */}
+            <div className="col-12 col-md-6 col-lg-4">
+              <div className="service-card-dark">
+                <div className="service-icon-dark">
+                  <FaBook size={50} color='white'/>
+                </div>
+                <h3 className="service-card-title-dark">EDITORIAL DESIGN</h3>
+                <p className="service-card-text-dark">
+                  Nuestro equipo ofrece diseños editoriales de alta calidad, flyers, señalética, packaging, presentaciones y más. Estamos listos para crear todos los activos visuales que tu marca o proyecto necesite.
+                </p>
+              </div>
+            </div>
+
+            {/* Advertising Card */}
+            <div className="col-12 col-md-6 col-lg-4">
+              <div className="service-card-dark">
+                <div className="service-icon-dark">
+                  <FaBullhorn size={50} color='white'/>
+                </div>
+                <h3 className="service-card-title-dark">ADVERTISING & MKT STRATEGY</h3>
+                <p className="service-card-text-dark">
+                  En el mundo digital de hoy, estar online es esencial para tu negocio. Nuestro trabajo experto en publicidad ayuda a que llegues a la audiencia correcta con el mensaje correcto, aumentando tus resultados en todas las plataformas.
+                </p>
+              </div>
+            </div>
+
+            {/* Email Marketing Card */}
+            <div className="col-12 col-md-6 col-lg-4">
+              <div className="service-card-dark">
+                <div className="service-icon-dark">
+                  <FaEnvelope size={50} color='white'/>
+                </div>
+                <h3 className="service-card-title-dark">EMAIL & SMS MARKETING</h3>
+                <p className="service-card-text-dark">
+                  La comunicación personalizada es clave para destacar. El email marketing sigue siendo una herramienta poderosa para construir relaciones entre tú y tus clientes potenciales. Nuestro equipo crea campañas estratégicas que entregan mensajes impactantes y personalizados.
+                </p>
+              </div>
+            </div>
+
+            {/* Social Media Card */}
+            <div className="col-12 col-md-6 col-lg-4">
+              <div className="service-card-dark">
+                <div className="service-icon-dark">
+                  <FaHashtag size={50} color='white'/>
+                </div>
+                <h3 className="service-card-title-dark">SOCIAL MEDIA</h3>
+                <p className="service-card-text-dark">
+                  Tu marca no puede permitirse ser invisible en redes sociales. Entendemos cómo las demandas del marketing pueden ser abrumadoras, por eso colaboramos contigo para crear contenido de alta calidad que conecte con tu audiencia.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center mt-4">
+            <a href="#contacto">
+              <button className="custom-button-light" style={{ padding: '15px 27px', fontSize: '18px' }}>
+                <span>CONTACTÁNOS</span>
+              </button>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================
+      --- INICIA SECCIÓN CLIENTES (AGREGADA) ---
+      ============================================================
+      */}
+      <section id='clientes' className="py-5" style={{ backgroundColor: '#fff' }}>
+        <div className="container">
+          
+          {/* Título y línea (como en tu imagen) */}
+          <h2 style={{ 
+            fontSize: '20px', 
+            fontWeight: '600', 
+            letterSpacing: '2px',
+            color: '#152139',
+            textTransform: 'uppercase', // Para que coincida con "NUESTROS CLIENTES"
+            paddingBottom: '15px',
+            borderBottom: '1px solid #152139',
+            marginBottom: '25px' // Espacio antes del párrafo
+          }}>
+            NUESTROS CLIENTES
+          </h2>
+          
+          {/* Párrafo (de tu imagen) - Reemplaza el "bla bla" con tu texto */}
+          <p style={{ 
+            lineHeight: '1.7', 
+            fontSize: '15px', 
+            color: '#152139', 
+            marginBottom: '50px' // Más espacio antes de los logos
+          }}>
+            Más que clientes, son nuestros socios estratégicos. Nos enorgullece haber impulsado el crecimiento de empresas locales e internacionales, adaptando nuestra visión y creatividad a sus desafíos únicos. Su éxito es nuestra mejor carta de presentación.
+          </p>
+
+          {/* Fila de Logos (usando Bootstrap grid)
+            NOTA: Deberás importar tus logos y reemplazar los `<div>` de placeholder.
+            Ejemplo de cómo usar una imagen:
+            <div className="col-6 col-sm-4 col-md-2 text-center mb-4">
+              <img src={TrekantsLogo} alt="Trekants" className="client-logo" />
+            </div>
+          */}
+          <div className="row g-4 g-md-5 align-items-center justify-content-start">
+            
+            {/* Reemplaza estos placeholders por tus <img> */}
+            <div className="col-6 col-sm-4 col-md-2 text-center mb-4">
+              <span style={{color: '#888', fontSize: '12px'}}>[LOGO]</span>
+            </div>
+            <div className="col-6 col-sm-4 col-md-2 text-center mb-4">
+              <span style={{color: '#888', fontSize: '12px'}}>[LOGO]</span>
+            </div>
+            <div className="col-6 col-sm-4 col-md-2 text-center mb-4">
+              <span style={{color: '#888', fontSize: '12px'}}>[LOGO]</span>
+            </div>
+            <div className="col-6 col-sm-4 col-md-2 text-center mb-4">
+              <span style={{color: '#888', fontSize: '12px'}}>[LOGO]</span>
+            </div>
+            <div className="col-6 col-sm-4 col-md-2 text-center mb-4">
+              <span style={{color: '#888', fontSize: '12px'}}>[LOGO]</span>
+            </div>
+            <div className="col-6 col-sm-4 col-md-2 text-center mb-4">
+              <span style={{color: '#888', fontSize: '12px'}}>[LOGO]</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* --- FIN SECCIÓN CLIENTES --- */}
+
     </div>
   );
 };
