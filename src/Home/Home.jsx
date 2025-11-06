@@ -151,8 +151,8 @@ const Home = () => {
           text-decoration: none;
           font-weight: 600;
           letter-spacing: 1px;
-          font-size: 14px;
-          padding: 8px 15px;
+          font-size: 14px; /* Estilo de Escritorio */
+          padding: 8px 15px; /* Estilo de Escritorio */
           transition: color 0.3s ease;
         }
 
@@ -205,7 +205,8 @@ const Home = () => {
 
         /* --- Estilo del Título para la Animación --- */
         .hero-title {
-          font-size: 42px;
+          /* AUMENTO DE TAMAÑO: Hacemos el texto más grande en escritorio */
+          font-size: 52px;
           font-weight: 700;
           line-height: 1.2;
           margin-bottom: 30px;
@@ -218,10 +219,12 @@ const Home = () => {
             overflow: hidden; 
             position: relative;
             line-height: 1.2; 
-            min-width: 350px; 
-            height: 51px; 
+            /* AJUSTE DE ANCHO Y ALTURA para el nuevo font-size */
+            min-width: 420px; 
+            height: 62px; 
             vertical-align: top; 
-            margin-left: 10px; 
+            /* MARGEN REDUCIDO */
+            margin-left: 5px; 
         }
         
         /* Contenedor que mantiene "SU" y la palabra animada en la misma línea */
@@ -252,42 +255,60 @@ const Home = () => {
             display: none !important;
           }
 
+          /* 🛑 AJUSTE DE NAVEGACIÓN EN MÓVIL */
+          .nav-link-custom {
+            font-size: 12px !important; /* Reducción de fuente */
+            padding: 8px 8px !important; /* Reducción de padding horizontal */
+          }
+
           .hero-text-col {
             text-align: left !important;
           }
 
           .hero-title {
-            /* 🛑 AJUSTE DE TAMAÑO: Reducido para caber en la columna más pequeña */
-            font-size: 16px !important; 
+            /* TAMAÑO AJUSTADO para caber en col-7 */
+            font-size: 18px !important; 
             line-height: 1.2 !important;
             margin-bottom: 15px !important;
           }
           
           .rotating-word-container {
-            /* 🛑 AJUSTE DE ANCHO: Reducido para caber en la columna más pequeña */
-            min-width: 130px; 
-            height: 19px; /* Ajuste de altura por el cambio de fuente */
-            margin-left: 5px; 
+            /* ANCHO AJUSTADO para el nuevo font-size */
+            min-width: 140px; 
+            height: 22px; 
+            margin-left: 3px; /* MARGEN REDUCIDO */
           }
 
           .hero-section {
-            padding-top: 20px !important;
-            padding-bottom: 20px !important;
+            /* ELIMINACIÓN DE PADDING LATERAL EN MÓVIL */
+            padding: 20px 0 !important;
+          }
+
+          /* CONTENEDOR DE BOOTSTRAP: Elimina padding dentro del contenedor de la imagen */
+          .hero-image-col {
+              padding-right: 0 !important;
           }
           
           .custom-button {
              padding: 8px 15px;
              font-size: 14px;
              letter-spacing: 1px;
+             margin-left: 15px; /* Compensa el padding eliminado de la sección */
           }
           
           .custom-button::before {
             width: calc(100% - 30px);
           }
           
-          /* 🛑 AJUSTE DE IMAGEN EN MÓVIL: Hace la imagen más pequeña para caber en col-4 */
+          /* AJUSTE DE IMAGEN EN MÓVIL: Aumento de tamaño */
           .hero-image-mobile img {
-            max-height: 120px !important; 
+            max-height: 180px !important; 
+            max-width: 100% !important; 
+          }
+
+          /* Compensa el padding eliminado de la sección para el texto */
+          .hero-text-col {
+            padding-left: 15px !important;
           }
         }
       `}</style>
@@ -317,6 +338,7 @@ const Home = () => {
         </div>
       </header>
 
+      {/* Navegación Principal (Ajustada en Móvil) */}
       <nav className="py-3 border-bottom" style={{ borderColor: '#152139' }}>
         <div className="container">
           <div className="row text-center">
@@ -336,13 +358,12 @@ const Home = () => {
         </div>
       </nav>
 
-      {/* Hero Section (Responsive en 1 fila) */}
-      <section className="py-5 hero-section">
+      {/* Hero Section */}
+      <section className="py-5 hero-section px-0 px-md-3"> 
         <div className="container">
           <div className="row align-items-center">
             
-            {/* 🛑 Columna de Texto: col-8 en móvil (para dejar espacio a la imagen) y col-md-6 en escritorio */}
-            <div className="col-8 col-md-6 hero-text-col"> 
+            <div className="col-7 col-md-6 hero-text-col"> 
               <h2 className="hero-title">
                 TRANSFORMAMOS<br />
                 <span className="inline-title-part">
@@ -368,15 +389,14 @@ const Home = () => {
                 </button></a>
             </div>
             
-            {/* 🛑 Columna de Imagen: col-4 en móvil y col-md-6 en escritorio */}
-            <div className="col-4 col-md-6 text-center hero-image-mobile">
+            <div className="col-5 col-md-6 text-center hero-image-mobile hero-image-col">
               <img 
                 src={W} 
                 alt="Wildbird W" 
                 style={{ 
                   maxWidth: '100%', 
                   height: 'auto', 
-                  maxHeight: '300px'
+                  maxHeight: '400px'
                 }} 
               />
             </div>
