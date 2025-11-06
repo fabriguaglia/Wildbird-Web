@@ -60,7 +60,9 @@ const Footer = () => {
           
           {/* Logo Section - Ocupa 12 columnas en móvil y 4 en desktop (ej: md) */}
           <div className="col-12 col-md-4 mb-4">
-            <img src={Logo} alt="Wild Bird Logo" style={{ height: '40px', marginBottom: '20px' }} />
+            <a href='/'>
+              <img src={Logo} alt="Wild Bird Logo" style={{ height: '40px', marginBottom: '20px' }} />
+            </a>
             <p style={{ fontSize: '14px', lineHeight: '1.6', opacity: 0.9 }}>
               Transformamos su visión en resultados digitales.
             </p>

@@ -1,10 +1,89 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Facebook, Instagram, Linkedin } from 'lucide-react';
 import Logo from './wildlogo.png';
 import W from './W.jpeg';
+// 🛑 Importar GSAP para animaciones fluidas
+import { gsap } from 'gsap'; 
 
-const WildbirdLanding = () => {
+// Lista de palabras y sus colores (usando tus tonos)
+const WORDS = [
+  { text: 'VISIÓN', color: '#152139' },
+  { text: 'IMAGINACIÓN', color: '#F78ACE' },
+  { text: 'ESTRATEGIA', color: '#152139' },
+  { text: 'CREATIVIDAD', color: '#F78ACE' },
+];
+
+// --- FUNCIONALIDAD: Animación Letra por Letra (Drop-in) ---
+
+const Home = () => {
+  // 1. Estados para manejar la palabra actual y su índice
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const currentWord = WORDS[currentWordIndex];
+  
+  // 2. Referencia para el contenedor de las LETRAS que GSAP va a animar
+  const letterContainerRef = useRef(null);
+
+  // 3. Lógica de Rotación y Animación con GSAP
+  useEffect(() => {
+    
+    // Función para manejar la animación de salida (todas las letras salen rápido y juntas)
+    const animateOut = () => {
+      // Seleccionar todas las letras dentro del contenedor
+      const letterElements = letterContainerRef.current ? letterContainerRef.current.children : [];
+      
+      // Solo animar si hay letras para animar
+      if (letterElements.length > 0) {
+        return gsap.to(letterElements, {
+          duration: 0.2, 
+          opacity: 0,
+          y: 10, 
+          ease: "power1.in",
+          stagger: 0.03, 
+          onComplete: () => {
+            // Cambiar el contenido (palabra) después de que la animación termine
+            setCurrentWordIndex((prevIndex) => (prevIndex + 1) % WORDS.length);
+          }
+        });
+      } else {
+          setCurrentWordIndex((prevIndex) => (prevIndex + 1) % WORDS.length);
+          return null; 
+      }
+    };
+
+    // Configurar el intervalo para la rotación 
+    const totalDuration = 3000; 
+    const intervalId = setInterval(() => {
+        animateOut(); 
+    }, totalDuration);
+
+    // Función de limpieza para detener el intervalo
+    return () => clearInterval(intervalId);
+
+  }, []); 
+
+  // 4. Se ejecuta cada vez que el índice de la palabra cambia para animar la entrada
+  useEffect(() => {
+    if (letterContainerRef.current) {
+        const newLetterElements = letterContainerRef.current.children;
+
+        gsap.fromTo(newLetterElements, 
+            // Estado inicial (comienza invisible y arriba)
+            { opacity: 0, y: -30, rotationX: 90 },
+            // Estado final (visible y en posición)
+            { 
+              duration: 0.6, 
+              opacity: 1, 
+              y: 0, 
+              rotationX: 0,
+              ease: "back.out(1.7)", 
+              stagger: 0.07 
+            }
+        );
+    }
+  }, [currentWordIndex, currentWord.text]); 
+
+
   return (
     <div style={{ 
       fontFamily: 'Arial, sans-serif',
@@ -40,7 +119,6 @@ const WildbirdLanding = () => {
         .custom-button {
           display: inline-block;
           border: none;
-          /* Padding de Escritorio: 12px (top/bottom) 28px (left/right) */
           padding: 12px 28px;
           color: #152139;
           text-decoration: none;
@@ -57,7 +135,6 @@ const WildbirdLanding = () => {
           left: 50%;
           top: 50%;
           transform: translateX(-50%);
-          /* Ancho de Escritorio: 100% del botón - 2 veces el padding horizontal (2 * 28px = 56px) */
           width: calc(100% - 56px); 
           height: 0.5em;
           background-color: #F78ACE;
@@ -117,7 +194,53 @@ const WildbirdLanding = () => {
         .service-item:hover {
           color: #F78ACE;
         }
-        /* --- Fin Estilos Existentes --- */
+
+        .about-services-bg {
+          background-image: url('./blush rosa.png'); 
+          background-size: cover; 
+          background-position: center center;
+          background-repeat: no-repeat; 
+          color: #152139;
+        }
+
+        /* --- Estilo del Título para la Animación --- */
+        .hero-title {
+          font-size: 42px;
+          font-weight: 700;
+          line-height: 1.2;
+          margin-bottom: 30px;
+          color: #152139; 
+        }
+        
+        /* 🛑 IMPORTANTE: Contenedor para la línea de la palabra cambiante */
+        .rotating-word-container {
+            display: inline-block;
+            overflow: hidden; 
+            position: relative;
+            line-height: 1.2; 
+            /* 🛑 AUMENTADO EL ANCHO para asegurar que la palabra más larga quepa sin cortarse */
+            min-width: 350px; 
+            height: 51px; 
+            vertical-align: top; 
+            margin-left: 10px; 
+        }
+        
+        .letter-container {
+            display: flex; 
+            white-space: nowrap; 
+            position: absolute; 
+            top: 0;
+            left: 0;
+            align-items: center; 
+            height: 100%; 
+        }
+
+        .letter {
+            display: inline-block; 
+            font-weight: 900; 
+            /* 🛑 REMOVIDO el padding-right para evitar que la última letra agregue espacio recortado */
+            transform-origin: bottom center; 
+        }
 
         /* --- Estilos Específicos para Móviles (<768px) --- */
         @media (max-width: 767.98px) {
@@ -134,23 +257,26 @@ const WildbirdLanding = () => {
             line-height: 1.2 !important;
             margin-bottom: 15px !important;
           }
+          
+          .rotating-word-container {
+            /* 🛑 AUMENTADO EL ANCHO para asegurar que la palabra más larga quepa sin cortarse en móvil */
+            min-width: 160px; 
+            height: 22px; 
+            margin-left: 5px; 
+          }
 
           .hero-section {
             padding-top: 20px !important;
             padding-bottom: 20px !important;
           }
           
-          /* Ajuste de Botón en Móvil */
           .custom-button {
-             /* Nuevo Padding en Móvil: 8px (top/bottom) 15px (left/right) */
              padding: 8px 15px;
              font-size: 14px;
              letter-spacing: 1px;
           }
           
-          /* AJUSTE CLAVE: Adaptar la barra rosa al nuevo padding de móvil */
           .custom-button::before {
-            /* El nuevo ancho debe ser: 100% del botón - 2 veces el nuevo padding horizontal (2 * 15px = 30px) */
             width: calc(100% - 30px);
           }
         }
@@ -166,11 +292,15 @@ const WildbirdLanding = () => {
               <Linkedin size={20} className="social-icon" />
             </div>
             <div className="col-12 col-md-8 text-center">
-                <img src={Logo} alt="Wildbird Logo" style={{ height: '40px' }} />
+                <a href='/'>
+                    <img src={Logo} alt="Wildbird Logo" style={{ height: '40px' }} />
+                </a>
             </div>
             <div className="col-md-2 text-end hide-mobile">
               <a href="#contacto" className="nav-link-custom">
-                CONTACTANOS
+                <button className="custom-button mt-4">
+                    <span>CONTACTÁNOS</span>
+                </button>
               </a>
             </div>
           </div>
@@ -202,19 +332,28 @@ const WildbirdLanding = () => {
           <div className="row align-items-center">
             
             <div className="col-6 hero-text-col">
-              <h2 className="hero-title" style={{ 
-                fontSize: '42px',
-                fontWeight: '700',
-                lineHeight: '1.2',
-                marginBottom: '30px'
-              }}>
+              <h2 className="hero-title">
                 TRANSFORMAMOS<br />
-                SU VISIÓN<br />
+                SU <span className="rotating-word-container">
+                    <div 
+                      ref={letterContainerRef} // 🛑 Referencia al contenedor de letras
+                      className="letter-container"
+                      style={{ color: currentWord.color }}
+                    >
+                        {/* Mapeamos las letras para animarlas individualmente */}
+                        {currentWord.text.split('').map((letter, index) => (
+                            <span key={index} className="letter">
+                                {letter === ' ' ? '\u00A0' : letter}
+                            </span>
+                        ))}
+                    </div>
+                </span><br />
                 EN RESULTADOS DIGITALES.
               </h2>
-              <button className="custom-button">
-                <span>CONÓCENOS</span>
-              </button>
+              <a href="#nosotros">
+                <button className="custom-button">
+                    <span>CONOCÉNOS</span>
+                </button></a>
             </div>
             
             <div className="col-6 text-center">
@@ -240,7 +379,7 @@ const WildbirdLanding = () => {
       </div>
 
       {/* About & Services Section */}
-      <section className="py-5" style={{ backgroundColor: '#f8f9fa' }}>
+      <section id='nosotros' className="py-5 about-services-bg">
         <div className="container">
           <div className="row">
             <div className="col-12 col-md-6 mb-4 mb-md-0">
@@ -252,16 +391,18 @@ const WildbirdLanding = () => {
                 <span>CONOCÉ NUESTRO TRABAJO</span>
               </button>
             </div>
-            <div className="col-12 col-md-6">
+            <div id='servicios' className="col-12 col-md-6">
               <h3 className="section-title">NUESTROS SERVICIOS</h3>
-              <a href="#web-design" className="service-item d-block">WEB DESIGN</a>
-              <a href="#brand-design" className="service-item d-block">BRAND DESIGN</a>
-              <a href="#editorial-design" className="service-item d-block">EDITORIAL DESIGN</a>
-              <a href="#advertising" className="service-item d-block">ADVERTISING</a>
-              <a href="#email-mkt" className="service-item d-block">EMAIL MKT</a>
-              <button className="custom-button mt-4">
-                <span>CONTACTÁNOS</span>
-              </button>
+              <p className="service-item d-block">WEB DESIGN</p>
+              <p className="service-item d-block">BRAND DESIGN</p>
+              <p className="service-item d-block">EDITORIAL DESIGN</p>
+              <p className="service-item d-block">ADVERTISING</p>
+              <p className="service-item d-block">EMAIL MKT</p>
+              <a href="#contacto">
+                <button className="custom-button mt-4">
+                    <span>CONTACTÁNOS</span>
+                </button>
+              </a>
             </div>
           </div>
         </div>
@@ -270,4 +411,4 @@ const WildbirdLanding = () => {
   );
 };
 
-export default WildbirdLanding;
+export default Home;
