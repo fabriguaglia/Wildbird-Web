@@ -12,7 +12,7 @@ const WildbirdLanding = () => {
       backgroundColor: '#fff'
     }}>
       <style>{`
-        /* --- Estilos Existentes --- */
+        /* --- Estilos Existentes (Manteniendo la estructura original) --- */
         .animated-text-line {
           background-color: #152139;
           color: #fff;
@@ -40,6 +40,7 @@ const WildbirdLanding = () => {
         .custom-button {
           display: inline-block;
           border: none;
+          /* Padding de Escritorio: 12px (top/bottom) 28px (left/right) */
           padding: 12px 28px;
           color: #152139;
           text-decoration: none;
@@ -56,7 +57,8 @@ const WildbirdLanding = () => {
           left: 50%;
           top: 50%;
           transform: translateX(-50%);
-          width: calc(100% - 56px);
+          /* Ancho de Escritorio: 100% del botón - 2 veces el padding horizontal (2 * 28px = 56px) */
+          width: calc(100% - 56px); 
           height: 0.5em;
           background-color: #F78ACE;
           z-index: 0;
@@ -123,34 +125,38 @@ const WildbirdLanding = () => {
             display: none !important;
           }
 
-          /* Asegura que el contenedor de texto del Hero no se centre en móvil */
           .hero-text-col {
             text-align: left !important;
           }
 
-          /* Reduce el tamaño del título h2 en el Hero Section */
           .hero-title {
-            font-size: 18px !important; /* Tamaño de fuente más pequeño */
+            font-size: 18px !important; 
             line-height: 1.2 !important;
             margin-bottom: 15px !important;
           }
 
-          /* Ajusta el padding de la sección hero para darle espacio */
           .hero-section {
             padding-top: 20px !important;
             padding-bottom: 20px !important;
           }
           
-          /* Ajusta el botón */
+          /* Ajuste de Botón en Móvil */
           .custom-button {
+             /* Nuevo Padding en Móvil: 8px (top/bottom) 15px (left/right) */
              padding: 8px 15px;
              font-size: 14px;
              letter-spacing: 1px;
           }
+          
+          /* AJUSTE CLAVE: Adaptar la barra rosa al nuevo padding de móvil */
+          .custom-button::before {
+            /* El nuevo ancho debe ser: 100% del botón - 2 veces el nuevo padding horizontal (2 * 15px = 30px) */
+            width: calc(100% - 30px);
+          }
         }
       `}</style>
 
-      {/* Header y Navigation (Sin cambios, pero responsive con hide-mobile) */}
+      {/* Header y Navigation (Responsive) */}
       <header className="py-3 border-bottom" style={{ borderColor: '#152139' }}>
         <div className="container">
           <div className="row align-items-center">
@@ -173,7 +179,6 @@ const WildbirdLanding = () => {
 
       <nav className="py-3 border-bottom" style={{ borderColor: '#152139' }}>
         <div className="container">
-          {/* La navegación ya es responsive ya que usa col-3 y no col-md-X */}
           <div className="row text-center">
             <div className="col-3">
               <a href="#nosotros" className="nav-link-custom">NOSOTROS</a>
@@ -191,17 +196,14 @@ const WildbirdLanding = () => {
         </div>
       </nav>
 
-      {/* Hero Section (Sección Principal) - MODIFICADA */}
+      {/* Hero Section (Responsive en 1 fila) */}
       <section className="py-5 hero-section">
         <div className="container">
-          {/* row no-gutters para eliminar el padding si es necesario, pero con align-items-center y col-6 ya funciona */}
           <div className="row align-items-center">
             
-            {/* Contenedor de Texto y Botón */}
-            {/* Usamos col-6 para forzar que ocupe la mitad del espacio incluso en móviles (XS) */}
             <div className="col-6 hero-text-col">
               <h2 className="hero-title" style={{ 
-                fontSize: '42px', // Valor por defecto para escritorio
+                fontSize: '42px',
                 fontWeight: '700',
                 lineHeight: '1.2',
                 marginBottom: '30px'
@@ -215,17 +217,14 @@ const WildbirdLanding = () => {
               </button>
             </div>
             
-            {/* Contenedor de Imagen W */}
-            {/* Usamos col-6 para forzar que ocupe la mitad del espacio incluso en móviles (XS) */}
             <div className="col-6 text-center">
-              {/* Ajustamos el estilo de la imagen W para que sea más pequeña en móvil */}
               <img 
                 src={W} 
                 alt="Wildbird W" 
                 style={{ 
                   maxWidth: '100%', 
                   height: 'auto', 
-                  maxHeight: '300px' // Limita la altura para que no sea muy grande en la fila
+                  maxHeight: '300px'
                 }} 
               />
             </div>
@@ -233,17 +232,18 @@ const WildbirdLanding = () => {
         </div>
       </section>
 
-      {/* Animated Text Line y About & Services Section (Sin cambios relevantes) */}
+      {/* Animated Text Line */}
       <div className="animated-text-line">
         <div className="animated-text-content">
           DISEÑO GRÁFICO DE ALTA CALIDAD / MARKETING QUE FUNCIONA / IMPULSANDO LA CREATIVIDAD, DOMINANDO LA ESTRATEGIA / DISEÑO GRÁFICO DE ALTA CALIDAD / MARKETING QUE FUNCIONA / IMPULSANDO LA CREATIVIDAD, DOMINANDO LA ESTRATEGIA / 
         </div>
       </div>
 
+      {/* About & Services Section */}
       <section className="py-5" style={{ backgroundColor: '#f8f9fa' }}>
         <div className="container">
           <div className="row">
-            <div className="col-12 col-md-6 mb-4 mb-md-0"> {/* Usamos col-12 en móvil para apilar */}
+            <div className="col-12 col-md-6 mb-4 mb-md-0">
               <h3 className="section-title">SOBRE NOSOTROS</h3>
               <p style={{ lineHeight: '1.8', fontSize: '15px' }}>
                 Somos un equipo apasionado y dedicado a lo que hacemos, motivados por el éxito de nuestros clientes. En un mundo saturado de información, analizamos meticulosamente lo que es mejor para su negocio. Al estudiar a su competencia, le ayudamos a forjar una presencia distintiva y a posicionarse estratégicamente en el mercado.
@@ -252,7 +252,7 @@ const WildbirdLanding = () => {
                 <span>CONOCÉ NUESTRO TRABAJO</span>
               </button>
             </div>
-            <div className="col-12 col-md-6"> {/* Usamos col-12 en móvil para apilar */}
+            <div className="col-12 col-md-6">
               <h3 className="section-title">NUESTROS SERVICIOS</h3>
               <a href="#web-design" className="service-item d-block">WEB DESIGN</a>
               <a href="#brand-design" className="service-item d-block">BRAND DESIGN</a>
