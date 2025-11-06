@@ -1,5 +1,5 @@
 import React from 'react';
-import { Facebook, Instagram, Linkedin, Mail, Phone } from 'lucide-react';
+import { Facebook, Instagram, Linkedin } from 'lucide-react';
 import Logo from "./logo.png"; // Asegúrate de que esta ruta sea correcta
 
 const Footer = () => {

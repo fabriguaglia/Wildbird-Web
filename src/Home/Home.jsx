@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Facebook, Instagram, Linkedin } from 'lucide-react';
 import Logo from './wildlogo.png';
 import W from './W.jpeg';
-// 🛑 Importar GSAP para animaciones fluidas
 import { gsap } from 'gsap'; 
 
 // Lista de palabras y sus colores (usando tus tonos)
@@ -223,8 +222,8 @@ const Home = () => {
             min-width: 420px; 
             height: 62px; 
             vertical-align: top; 
-            /* MARGEN REDUCIDO */
-            margin-left: 5px; 
+            /* MARGEN AUMENTADO para más espacio con "SU" */
+            margin-left: 10px; 
         }
         
         /* Contenedor que mantiene "SU" y la palabra animada en la misma línea */
@@ -247,6 +246,13 @@ const Home = () => {
             display: inline-block; 
             font-weight: 900; 
             transform-origin: bottom center; 
+        }
+
+        /* Ajuste para acercar texto al centro solo en desktop */
+        @media (min-width: 768px) {
+          .hero-text-col {
+            padding-left: 60px;
+          }
         }
 
         /* --- Estilos Específicos para Móviles (<768px) --- */
@@ -276,7 +282,7 @@ const Home = () => {
             /* ANCHO AJUSTADO para el nuevo font-size */
             min-width: 140px; 
             height: 22px; 
-            margin-left: 3px; /* MARGEN REDUCIDO */
+            margin-left: 5px; 
           }
 
           .hero-section {
@@ -361,8 +367,10 @@ const Home = () => {
       {/* Hero Section */}
       <section className="py-5 hero-section px-0 px-md-3"> 
         <div className="container">
-          <div className="row align-items-center">
+          {/* gx-0 elimina completamente el espacio entre columnas */}
+          <div className="row align-items-center gx-0">
             
+            {/* Texto del hero sin padding extra */}
             <div className="col-7 col-md-6 hero-text-col"> 
               <h2 className="hero-title">
                 TRANSFORMAMOS<br />
@@ -389,6 +397,7 @@ const Home = () => {
                 </button></a>
             </div>
             
+            {/* Imagen sin padding extra */}
             <div className="col-5 col-md-6 text-center hero-image-mobile hero-image-col">
               <img 
                 src={W} 
