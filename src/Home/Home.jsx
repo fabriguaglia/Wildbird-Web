@@ -91,7 +91,7 @@ const Home = () => {
       backgroundColor: '#fff'
     }}>
       <style>{`
-        /* --- Estilos Existentes (Manteniendo la estructura original) --- */
+        /* --- Estilos Existentes --- */
         .animated-text-line {
           background-color: #152139;
           color: #fff;
@@ -212,19 +212,24 @@ const Home = () => {
           color: #152139; 
         }
         
-        /* 🛑 IMPORTANTE: Contenedor para la línea de la palabra cambiante */
+        /* Contenedor para la línea de la palabra cambiante (Escritorio) */
         .rotating-word-container {
             display: inline-block;
             overflow: hidden; 
             position: relative;
             line-height: 1.2; 
-            /* 🛑 AUMENTADO EL ANCHO para asegurar que la palabra más larga quepa sin cortarse */
             min-width: 350px; 
             height: 51px; 
             vertical-align: top; 
             margin-left: 10px; 
         }
         
+        /* Contenedor que mantiene "SU" y la palabra animada en la misma línea */
+        .inline-title-part {
+            display: inline-flex;
+            align-items: flex-start; 
+        }
+
         .letter-container {
             display: flex; 
             white-space: nowrap; 
@@ -238,7 +243,6 @@ const Home = () => {
         .letter {
             display: inline-block; 
             font-weight: 900; 
-            /* 🛑 REMOVIDO el padding-right para evitar que la última letra agregue espacio recortado */
             transform-origin: bottom center; 
         }
 
@@ -253,15 +257,16 @@ const Home = () => {
           }
 
           .hero-title {
-            font-size: 18px !important; 
+            /* 🛑 AJUSTE DE TAMAÑO: Reducido para caber en la columna más pequeña */
+            font-size: 16px !important; 
             line-height: 1.2 !important;
             margin-bottom: 15px !important;
           }
           
           .rotating-word-container {
-            /* 🛑 AUMENTADO EL ANCHO para asegurar que la palabra más larga quepa sin cortarse en móvil */
-            min-width: 160px; 
-            height: 22px; 
+            /* 🛑 AJUSTE DE ANCHO: Reducido para caber en la columna más pequeña */
+            min-width: 130px; 
+            height: 19px; /* Ajuste de altura por el cambio de fuente */
             margin-left: 5px; 
           }
 
@@ -278,6 +283,11 @@ const Home = () => {
           
           .custom-button::before {
             width: calc(100% - 30px);
+          }
+          
+          /* 🛑 AJUSTE DE IMAGEN EN MÓVIL: Hace la imagen más pequeña para caber en col-4 */
+          .hero-image-mobile img {
+            max-height: 120px !important; 
           }
         }
       `}</style>
@@ -331,22 +341,24 @@ const Home = () => {
         <div className="container">
           <div className="row align-items-center">
             
-            <div className="col-6 hero-text-col">
+            {/* 🛑 Columna de Texto: col-8 en móvil (para dejar espacio a la imagen) y col-md-6 en escritorio */}
+            <div className="col-8 col-md-6 hero-text-col"> 
               <h2 className="hero-title">
                 TRANSFORMAMOS<br />
-                SU <span className="rotating-word-container">
-                    <div 
-                      ref={letterContainerRef} // 🛑 Referencia al contenedor de letras
-                      className="letter-container"
-                      style={{ color: currentWord.color }}
-                    >
-                        {/* Mapeamos las letras para animarlas individualmente */}
-                        {currentWord.text.split('').map((letter, index) => (
-                            <span key={index} className="letter">
-                                {letter === ' ' ? '\u00A0' : letter}
-                            </span>
-                        ))}
-                    </div>
+                <span className="inline-title-part">
+                    SU <span className="rotating-word-container">
+                        <div 
+                        ref={letterContainerRef} 
+                        className="letter-container"
+                        style={{ color: currentWord.color }}
+                        >
+                            {currentWord.text.split('').map((letter, index) => (
+                                <span key={index} className="letter">
+                                    {letter === ' ' ? '\u00A0' : letter}
+                                </span>
+                            ))}
+                        </div>
+                    </span>
                 </span><br />
                 EN RESULTADOS DIGITALES.
               </h2>
@@ -356,7 +368,8 @@ const Home = () => {
                 </button></a>
             </div>
             
-            <div className="col-6 text-center">
+            {/* 🛑 Columna de Imagen: col-4 en móvil y col-md-6 en escritorio */}
+            <div className="col-4 col-md-6 text-center hero-image-mobile">
               <img 
                 src={W} 
                 alt="Wildbird W" 
