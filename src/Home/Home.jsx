@@ -1,11 +1,50 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Facebook, Instagram, Linkedin } from 'lucide-react';
-import { FaPalette, FaCode, FaBook, FaBullhorn, FaEnvelope, FaHashtag } from 'react-icons/fa';
 import Logo from './wildlogo.png';
 import './Home.css';
 import Inicio from '../Inicio/Inicio';
+import { useState } from 'react';
+import Alto from './alto.png';
+import Cartoon from './cartoon.jpg';
+import Disney from './disney.png';
+import Hbo from './hbo.jpg';
+import Playa from './playa.png';
+import Resort from './resort.png';
 
 const Home = () => {
+  const [selectedService, setSelectedService] = useState('estrategia');
+
+  const services = {
+    estrategia: {
+      title: 'Estrategia',
+      description: 'Desarrollamos estrategias de posicionamiento e identidad de marca basadas en un análisis profundo y personalizado, que incluye el estudio de la competencia, la industria y el mercado. Ayudamos a tu marca a crecer con propósito y vuelo creativo'
+    },
+    branding: {
+      title: 'Branding',
+      description: 'Creamos marcas con identidad y coherencia. Desarrollamos identidad visual y conceptual de tu marca: naming, logo, identidad gráfica, tone of voice..'
+    },
+    web: {
+      title: 'Web & E-commerce',
+      description: 'Diseñamos y desarrollamos sitios web que reflejan la identidad de tu marca y tus objetivos de negocio. Ya sea una landing page, un sitio institucional o una tienda online, creamos experiencias digitales funcionales, estéticas y orientadas a la conversión.'
+    },
+    filmmaking: {
+      title: 'Filmmaking & Content Creation',
+      description: 'Capturamos tu marca desde nuevas alturas. Realizamos producciones audiovisuales creativas con enfoque cinematográfico: filmaciones con drone, spots publicitarios, reels y contenido digital que transmiten la esencia de tu marca con impacto visual y calidad profesional.'
+    },
+    advertising: {
+      title: 'Advertising',
+      description: 'Creamos e implementamos campañas de Paid Media en Meta Ads y Google Ads, potenciadas con inteligencia artificial para optimizar resultados. Estrategia, datos y creatividad se combinan para impulsar rendimiento, crecimiento y conversión.'
+    },
+    socialMedia: {
+      title: 'Social Media & Influencer Marketing',
+      description: 'Creamos estrategias de contenido que conectan. Desde la planificación editorial, community management y diseño de piezas, hasta campañas con influencers y partnerships estratégicos para amplificar tu mensaje.'
+    },
+    produccion: {
+      title: 'Producción & Eventos',
+      description: 'Ofrecemos un servicio integral que une: estrategia, creatividad y producción. Coordinamos eventos de gran escala o experiencias boutique, activaciones BTL e integración de marcas cuidando cada detalle del proceso.'
+    }
+  };
+
   return (
     <div style={{ 
       fontFamily: 'Arial, sans-serif',
@@ -33,7 +72,7 @@ const Home = () => {
             <div className="col-md-2 text-end hide-mobile">
               <a href="#contacto" className="nav-link-custom">
                 <button className="custom-button mt-4">
-                    <span>CONTACTÁNOS</span>
+                    <span>CONTÁCTANOS</span>
                 </button>
               </a>
             </div>
@@ -70,29 +109,37 @@ const Home = () => {
         </div>
       </div>
 
-      {/* About & Services Section */}
-      <section id='about' className="py-5 about-services-bg">
+      {/* About Section - Nueva estética */}
+      <section id='nosotros' className="py-5 about-services-bg">
         <div className="container">
+          <h2 style={{ 
+            fontSize: '28px', 
+            fontWeight: '600', 
+            color: '#152139',
+            letterSpacing: '2px',
+            textTransform: 'uppercase', 
+            paddingBottom: '15px',
+            borderBottom: '2px solid #152139', 
+            marginBottom: '30px' 
+          }}>
+            SOBRE WILDBIRD
+          </h2>
+          
           <div className="row">
-            <div className="col-12 col-md-6 mb-4 mb-md-0">
-              <h3 className="section-title">SOBRE NOSOTROS</h3>
-              <p style={{ lineHeight: '1.8', fontSize: '15px' }}>
-                Somos un equipo apasionado y dedicado a lo que hacemos, motivados por el éxito de nuestros clientes. En un mundo saturado de información, analizamos meticulosamente lo que es mejor para su negocio. Al estudiar a su competencia, le ayudamos a forjar una presencia distintiva y a posicionarse estratégicamente en el mercado.
+            <div className="col-12">
+              <p style={{ 
+                lineHeight: '1.8', 
+                fontSize: '16px',
+                color: '#152139',
+                marginBottom: '30px'
+              }}>
+                En WildBird creemos en las marcas que se animan a volar alto y desafiar lo establecido.
+                Combinamos estrategia, creatividad y tecnología para construir marcas con propósito, integrando branding, comunicación y herramientas digitales e IA.
+                Ayudamos a empresas y emprendedores a crecer y destacar en sus industrias
               </p>
-              <button className="custom-button mt-3">
-                <span>CONOCÉ NUESTRO TRABAJO</span>
-              </button>
-            </div>
-            <div className="col-12 col-md-6">
-              <h3 className="section-title">ESPECIALIDADES</h3>
-              <p className="service-item d-block">WEB DESIGN</p>
-              <p className="service-item d-block">BRAND DESIGN</p>
-              <p className="service-item d-block">EDITORIAL DESIGN</p>
-              <p className="service-item d-block">ADVERTISING</p>
-              <p className="service-item d-block">EMAIL MKT</p>
-              <a href="#contacto">
-                <button className="custom-button mt-4">
-                    <span>CONTACTÁNOS</span>
+              <a href="#servicios">
+                <button className="custom-button mt-3">
+                  <span>CONOCÉ NUESTRO TRABAJO</span>
                 </button>
               </a>
             </div>
@@ -100,7 +147,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Services Cards Section */}
+      {/* Services Section - Nueva estructura */}
       <section id='servicios' className="py-5" style={{ backgroundColor: '#152139' }}>
         <div className="container">
           
@@ -114,100 +161,74 @@ const Home = () => {
             borderBottom: '1px solid #fff', 
             marginBottom: '30px' 
           }}>
-            NUESTROS SERVICIOS
+            SERVICIOS
           </h2>
 
-          <div className="row g-4">
-            {/* Brand Design Card */}
-            <div className="col-12 col-md-6 col-lg-4">
-              <div className="service-card-dark">
-                <div className="service-icon-dark">
-                  <FaPalette size={50} color='white'/>
-                </div>
-                <h3 className="service-card-title-dark">BRAND DESIGN</h3>
-                <p className="service-card-text-dark">
-                  Creamos branding de alto impacto y logos adaptados a tus necesidades. Escuchamos tu visión y te brindamos asesoramiento experto para que termines con una identidad de marca de la que te sientas orgulloso, una que realmente represente tu negocio.
-                </p>
+          <div className="row">
+            {/* Lista de servicios clickeables */}
+            <div className="col-12 col-md-4 mb-4 mb-md-0">
+              <div style={{ position: 'sticky', top: '20px' }}>
+                {Object.entries(services).map(([key, service]) => (
+                  <p 
+                    key={key}
+                    onClick={() => setSelectedService(key)}
+                    style={{ 
+                      fontSize: '18px',
+                      fontWeight: '700',
+                      letterSpacing: '1.5px',
+                      marginBottom: '15px',
+                      color: selectedService === key ? '#F78ACE' : '#fff',
+                      cursor: 'pointer',
+                      transition: 'color 0.3s ease'
+                    }}
+                    onMouseEnter={(e) => e.target.style.color = '#F78ACE'}
+                    onMouseLeave={(e) => e.target.style.color = selectedService === key ? '#F78ACE' : '#fff'}
+                  >
+                    {service.title}
+                  </p>
+                ))}
               </div>
             </div>
 
-            {/* Web Design Card */}
-            <div className="col-12 col-md-6 col-lg-4">
-              <div className="service-card-dark">
-                <div className="service-icon-dark">
-                  <FaCode size={50} color='white'/>
-                </div>
-                <h3 className="service-card-title-dark">WEB DESIGN & DEVELOP</h3>
-                <p className="service-card-text-dark">
-                  Diseñamos sitios web de primer nivel que generan resultados, ya sea aumentando ventas o capturando clientes potenciales. Nuestros sitios web están diseñados para captar la atención y guiar a tus clientes potenciales hacia la acción.
-                </p>
-              </div>
-            </div>
-
-            {/* Editorial Design Card */}
-            <div className="col-12 col-md-6 col-lg-4">
-              <div className="service-card-dark">
-                <div className="service-icon-dark">
-                  <FaBook size={50} color='white'/>
-                </div>
-                <h3 className="service-card-title-dark">EDITORIAL DESIGN</h3>
-                <p className="service-card-text-dark">
-                  Nuestro equipo ofrece diseños editoriales de alta calidad, flyers, señalética, packaging, presentaciones y más. Estamos listos para crear todos los activos visuales que tu marca o proyecto necesite.
-                </p>
-              </div>
-            </div>
-
-            {/* Advertising Card */}
-            <div className="col-12 col-md-6 col-lg-4">
-              <div className="service-card-dark">
-                <div className="service-icon-dark">
-                  <FaBullhorn size={50} color='white'/>
-                </div>
-                <h3 className="service-card-title-dark">ADVERTISING & MKT STRATEGY</h3>
-                <p className="service-card-text-dark">
-                  En el mundo digital de hoy, estar online es esencial para tu negocio. Nuestro trabajo experto en publicidad ayuda a que llegues a la audiencia correcta con el mensaje correcto, aumentando tus resultados en todas las plataformas.
-                </p>
-              </div>
-            </div>
-
-            {/* Email Marketing Card */}
-            <div className="col-12 col-md-6 col-lg-4">
-              <div className="service-card-dark">
-                <div className="service-icon-dark">
-                  <FaEnvelope size={50} color='white'/>
-                </div>
-                <h3 className="service-card-title-dark">EMAIL & SMS MARKETING</h3>
-                <p className="service-card-text-dark">
-                  La comunicación personalizada es clave para destacar. El email marketing sigue siendo una herramienta poderosa para construir relaciones entre tú y tus clientes potenciales. Nuestro equipo crea campañas estratégicas que entregan mensajes impactantes y personalizados.
-                </p>
-              </div>
-            </div>
-
-            {/* Social Media Card */}
-            <div className="col-12 col-md-6 col-lg-4">
-              <div className="service-card-dark">
-                <div className="service-icon-dark">
-                  <FaHashtag size={50} color='white'/>
-                </div>
-                <h3 className="service-card-title-dark">SOCIAL MEDIA</h3>
-                <p className="service-card-text-dark">
-                  Tu marca no puede permitirse ser invisible en redes sociales. Entendemos cómo las demandas del marketing pueden ser abrumadoras, por eso colaboramos contigo para crear contenido de alta calidad que conecte con tu audiencia.
+            {/* Descripción del servicio seleccionado */}
+            <div className="col-12 col-md-8">
+              <div style={{
+                padding: '30px',
+                backgroundColor: 'rgba(247, 138, 206, 0.1)',
+                borderRadius: '8px',
+                minHeight: '300px'
+              }}>
+                <h3 style={{
+                  fontSize: '24px',
+                  fontWeight: '700',
+                  letterSpacing: '1.5px',
+                  color: '#F78ACE',
+                  marginBottom: '20px'
+                }}>
+                  {services[selectedService].title}
+                </h3>
+                <p style={{
+                  fontSize: '16px',
+                  lineHeight: '1.8',
+                  color: '#fff'
+                }}>
+                  {services[selectedService].description}
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="text-center mt-4">
+          <div className="text-center mt-5">
             <a href="#contacto">
               <button className="custom-button-light" style={{ padding: '15px 27px', fontSize: '18px' }}>
-                <span>CONTACTÁNOS</span>
+                <span>CONTÁCTANOS</span>
               </button>
             </a>
           </div>
         </div>
       </section>
 
-      {/* Seccion Clientes */}
+      {/* Seccion Clientes - SIN CAMBIOS */}
       <section id='clientes' className="py-5" style={{ backgroundColor: '#fff' }}>
         <div className="container">
           
@@ -223,36 +244,26 @@ const Home = () => {
           }}>
             NUESTROS CLIENTES
           </h2>
-          
-          <p style={{ 
-            lineHeight: '1.7', 
-            fontSize: '15px', 
-            color: '#152139', 
-            marginBottom: '50px' 
-          }}>
-            Más que clientes, son nuestros socios estratégicos. Nos enorgullece haber impulsado el crecimiento de empresas locales e internacionales, adaptando nuestra visión y creatividad a sus desafíos únicos. Su éxito es nuestra mejor carta de presentación.
-          </p>
 
-          <div className="row g-4 g-md-5 align-items-center justify-content-start">
+          <div className="row g-4 g-md-5 align-items-center justify-content-center">
             
-            {/* Reemplaza estos placeholders por tus <img> */}
-            <div className="col-6 col-sm-4 col-md-2 text-center mb-4">
-              <span style={{color: '#888', fontSize: '12px'}}>[LOGO]</span>
+            <div className="col-4 col-md-2 text-center d-flex align-items-center justify-content-center" style={{ height: '100px' }}>
+              <img src={Disney} style={{maxHeight:"80px", maxWidth: "100%", objectFit: "contain"}}/>
             </div>
-            <div className="col-6 col-sm-4 col-md-2 text-center mb-4">
-              <span style={{color: '#888', fontSize: '12px'}}>[LOGO]</span>
+            <div className="col-4 col-md-2 text-center d-flex align-items-center justify-content-center" style={{ height: '100px' }}>
+              <img src={Hbo} style={{maxHeight:"80px", maxWidth: "100%", objectFit: "contain"}}/>
             </div>
-            <div className="col-6 col-sm-4 col-md-2 text-center mb-4">
-              <span style={{color: '#888', fontSize: '12px'}}>[LOGO]</span>
+            <div className="col-4 col-md-2 text-center d-flex align-items-center justify-content-center" style={{ height: '100px' }}>
+              <img src={Playa} style={{maxHeight:"80px", maxWidth: "100%", objectFit: "contain"}}/>
             </div>
-            <div className="col-6 col-sm-4 col-md-2 text-center mb-4">
-              <span style={{color: '#888', fontSize: '12px'}}>[LOGO]</span>
+            <div className="col-4 col-md-2 text-center d-flex align-items-center justify-content-center" style={{ height: '100px' }}>
+              <img src={Resort} style={{maxHeight:"80px", maxWidth: "100%", objectFit: "contain"}}/>
             </div>
-            <div className="col-6 col-sm-4 col-md-2 text-center mb-4">
-              <span style={{color: '#888', fontSize: '12px'}}>[LOGO]</span>
+            <div className="col-4 col-md-2 text-center d-flex align-items-center justify-content-center" style={{ height: '100px' }}>
+              <img src={Alto} style={{maxHeight:"80px", maxWidth: "100%", objectFit: "contain"}}/>
             </div>
-            <div className="col-6 col-sm-4 col-md-2 text-center mb-4">
-              <span style={{color: '#888', fontSize: '12px'}}>[LOGO]</span>
+            <div className="col-4 col-md-2 text-center d-flex align-items-center justify-content-center" style={{ height: '100px' }}>
+              <img src={Cartoon} style={{maxHeight:"80px", maxWidth: "100%", objectFit: "contain"}}/>
             </div>
           </div>
         </div>

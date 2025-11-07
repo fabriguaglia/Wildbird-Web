@@ -157,9 +157,11 @@ const Inicio = () => {
           </h1>
           
           <div className="button-container" style={{ textAlign: 'right' }}>
-            <button className="custom-hero-button">
-              <span>HABLEMOS</span>
-            </button>
+            <a href='#about'>
+              <button className="custom-hero-button">
+                <span>HABLEMOS</span>
+              </button>
+            </a>
           </div>
         </div>
       </div>
