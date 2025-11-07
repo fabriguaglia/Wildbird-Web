@@ -248,22 +248,22 @@ const Home = () => {
           <div className="row g-4 g-md-5 align-items-center justify-content-center">
             
             <div className="col-4 col-md-2 text-center d-flex align-items-center justify-content-center" style={{ height: '100px' }}>
-              <img src={Disney} style={{maxHeight:"80px", maxWidth: "100%", objectFit: "contain"}}/>
+              <img src={Disney} alt='disney' style={{maxHeight:"80px", maxWidth: "100%", objectFit: "contain"}}/>
             </div>
             <div className="col-4 col-md-2 text-center d-flex align-items-center justify-content-center" style={{ height: '100px' }}>
-              <img src={Hbo} style={{maxHeight:"80px", maxWidth: "100%", objectFit: "contain"}}/>
+              <img src={Hbo} alt='hbo' style={{maxHeight:"80px", maxWidth: "100%", objectFit: "contain"}}/>
             </div>
             <div className="col-4 col-md-2 text-center d-flex align-items-center justify-content-center" style={{ height: '100px' }}>
-              <img src={Playa} style={{maxHeight:"80px", maxWidth: "100%", objectFit: "contain"}}/>
+              <img src={Playa} alt='playa' style={{maxHeight:"80px", maxWidth: "100%", objectFit: "contain"}}/>
             </div>
             <div className="col-4 col-md-2 text-center d-flex align-items-center justify-content-center" style={{ height: '100px' }}>
-              <img src={Resort} style={{maxHeight:"80px", maxWidth: "100%", objectFit: "contain"}}/>
+              <img src={Resort} alt='resort' style={{maxHeight:"80px", maxWidth: "100%", objectFit: "contain"}}/>
             </div>
             <div className="col-4 col-md-2 text-center d-flex align-items-center justify-content-center" style={{ height: '100px' }}>
-              <img src={Alto} style={{maxHeight:"80px", maxWidth: "100%", objectFit: "contain"}}/>
+              <img src={Alto} alt='alto' style={{maxHeight:"80px", maxWidth: "100%", objectFit: "contain"}}/>
             </div>
             <div className="col-4 col-md-2 text-center d-flex align-items-center justify-content-center" style={{ height: '100px' }}>
-              <img src={Cartoon} style={{maxHeight:"80px", maxWidth: "100%", objectFit: "contain"}}/>
+              <img src={Cartoon} alt='cartoon' style={{maxHeight:"80px", maxWidth: "100%", objectFit: "contain"}}/>
             </div>
           </div>
         </div>
