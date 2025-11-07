@@ -48,7 +48,7 @@ const Inicio = () => {
         });
 
         // Animar letras
-        gsap.fromTo(
+        const animation = gsap.fromTo(
           letters,
           { opacity: 0, y: 20 },
           {
@@ -74,6 +74,8 @@ const Inicio = () => {
             }
           }
         );
+        
+        animationRef.current = animation;
       };
 
       animateWord();
@@ -82,8 +84,9 @@ const Inicio = () => {
     document.head.appendChild(script);
 
     return () => {
-      if (animationRef.current) {
-        animationRef.current.kill();
+      const currentAnimation = animationRef.current;
+      if (currentAnimation) {
+        currentAnimation.kill();
       }
     };
   }, []);
@@ -154,11 +157,9 @@ const Inicio = () => {
           </h1>
           
           <div className="button-container" style={{ textAlign: 'right' }}>
-            <a href='#about'>
-              <button className="custom-hero-button">
-                <span>HABLEMOS</span>
-              </button>
-            </a>
+            <button className="custom-hero-button">
+              <span>HABLEMOS</span>
+            </button>
           </div>
         </div>
       </div>
