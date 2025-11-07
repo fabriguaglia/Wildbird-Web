@@ -1,0 +1,330 @@
+/* =================================================================
+   ESTILOS GENERALES Y ESCRITORIO
+   ================================================================= */
+
+/* --- Animación de línea de texto --- */
+.animated-text-line {
+  background-color: #152139;
+  color: #fff;
+  padding: 12px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+
+.animated-text-content {
+  display: inline-block;
+  animation: scroll-left 25s linear infinite;
+  padding-left: 100%;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* --- Estilos de Botones (General) --- */
+.custom-button {
+  display: inline-block;
+  border: none;
+  padding: 12px 28px;
+  color: #152139;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  font-size: 17px;
+  position: relative;
+  background: transparent;
+}
+
+.custom-button::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 56px); 
+  height: 0.5em;
+  background-color: #F78ACE;
+  z-index: 0;
+}
+
+.custom-button span {
+  position: relative;
+  z-index: 2;
+}
+
+/* --- Estilos de Navegación --- */
+.nav-link-custom {
+  color: #152139;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-size: 14px; 
+  padding: 8px 15px; 
+  transition: color 0.3s ease;
+}
+
+.nav-link-custom:hover {
+  color: #F78ACE;
+}
+
+.social-icon {
+  color: #152139;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.social-icon:hover {
+  color: #F78ACE;
+}
+
+/* --- Estilos de Títulos de Sección --- */
+.section-title {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #152139;
+}
+
+.service-item {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+  color: #152139;
+  text-decoration: none;
+  display: inline-block;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.service-item:hover {
+  color: #F78ACE;
+}
+
+/* --- Secciones Backgrounds --- */
+.about-services-bg {
+  background-image: url('./blush rosa.png'); 
+  background-size: cover; 
+  background-position: center center;
+  background-repeat: no-repeat; 
+  color: #152139;
+}
+
+/* --- Hero Título y Animación de Texto --- */
+.hero-title {
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 30px;
+  color: #152139; 
+}
+
+/* MODIFICADO: Ajuste de alineación para que se integre al texto */
+.rotating-word-container {
+    display: inline-block;
+    overflow: hidden; 
+    position: relative;
+    line-height: 1.2; 
+    min-width: 320px; 
+    height: 62px; 
+    vertical-align: baseline; /* Clave para alinearse con el texto circundante */
+    margin-left: 0; 
+    margin-right: 0;
+}
+
+.inline-title-part {
+    display: inline-flex;
+    align-items: flex-end; /* Alinea los ítems en la parte inferior */
+    height: 100%; 
+}
+
+.letter-container {
+    display: flex; 
+    white-space: nowrap; 
+    position: absolute; 
+    top: auto; 
+    bottom: 0; /* Asegura que la palabra esté en la línea base */
+    left: 0;
+    align-items: flex-end; 
+    height: 100%; 
+}
+
+.letter {
+    display: inline-block; 
+    font-weight: 900; 
+    transform-origin: bottom center; 
+}
+
+/* --- Service Cards Styles (Fondo Oscuro) --- */
+.service-card-dark {
+  height: 100%;
+  padding: 30px 25px;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.service-card-dark:hover {
+  transform: translateY(-5px);
+}
+
+.service-icon-dark {
+  color: #F78ACE;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
+}
+
+.service-card-dark:hover .service-icon-dark {
+  transform: scale(1.1);
+}
+
+.service-card-title-dark {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #F78ACE;
+  margin-bottom: 15px;
+}
+
+.service-card-text-dark {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #fff;
+}
+
+.custom-button-light {
+  display: inline-block;
+  border: none;
+  padding: 12px 28px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  font-size: 17px;
+  position: relative;
+  background: transparent;
+}
+
+.custom-button-light::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 56px); 
+  height: 0.5em;
+  background-color: #F78ACE;
+  z-index: 0;
+}
+
+.custom-button-light span {
+  position: relative;
+  z-index: 2;
+}
+
+/* --- Media Query: ESCRITORIO (>768px) --- */
+@media (min-width: 768px) {
+  .hero-text-col {
+    padding-left: 60px;
+    text-align: right; 
+  }
+  .hero-title-desktop {
+    text-align: right; 
+  }
+  
+  /* Ajuste específico para que el contenedor rotativo se pegue al texto en escritorio */
+  .hero-title-desktop .rotating-word-container {
+    /* Si el texto está a la derecha, debe ir a la izquierda del siguiente texto (que está en la línea de abajo) */
+    margin-right: -10px; /* Pequeño ajuste si se necesita */
+  }
+}
+
+/* =================================================================
+   MEDIA QUERY: MÓVIL (<768px)
+   ================================================================= */
+@media (max-width: 767.98px) {
+  /* 1. Ocultar íconos sociales y botón de contacto superior */
+  .hide-mobile {
+    display: none !important;
+  }
+  
+  /* 2. OCULTAR BARRA DE NAVEGACIÓN PRINCIPAL (NOSOTROS, SERVICIOS, etc.) */
+  .mobile-nav {
+    display: none !important; 
+  }
+
+  /* 3. Ajuste de enlaces si existiera */
+  .nav-link-custom {
+    font-size: 12px !important; 
+    padding: 8px 8px !important; 
+  }
+  
+  /* 4. Alinear el texto al centro (Horizontal) */
+  .hero-text-col {
+    text-align: center !important; 
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+  
+  /* 5. Título ajustado para móvil (AGRANDADO) */
+  .hero-title {
+    font-size: 30px !important; /* Ajuste para mantener la proporción */
+    line-height: 1.2 !important;
+    margin-bottom: 15px !important;
+  }
+  
+  /* 6. Contenedor de la palabra rotante ajustado */
+  .rotating-word-container {
+    min-width: 170px; /* Ajustado para el tamaño de la palabra */
+    height: 36px; /* Ajustado para el font-size de 30px */
+    margin-left: 0px; 
+    display: inline-flex; 
+    vertical-align: baseline; /* MODIFICADO: Alinear con el texto */
+  }
+  
+  /* NUEVO: Asegurarse que el contenedor de letras se alinee correctamente */
+  .letter-container {
+    align-items: flex-end; 
+    bottom: 0; 
+  }
+
+  /* 7. Ajuste de botón */
+  .custom-button {
+      padding: 8px 15px;
+      font-size: 14px;
+      letter-spacing: 1px;
+      margin-left: 0; 
+      margin-top: 5px !important; 
+  }
+  
+  .custom-button::before {
+    width: calc(100% - 30px);
+  }
+  
+  /* 8. Imagen en móvil (AGRANDADA y centrada) */
+  .hero-image-mobile img {
+    max-height: 250px !important; 
+    max-width: 80% !important; 
+    margin: 0 auto; 
+    display: block;
+  }
+  
+  /* 9. Padding de la sección hero */
+  .hero-section {
+    padding: 20px 0 !important;
+  }
+
+  /* 10. Limpieza de padding de columna de imagen */
+  .hero-image-col {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      text-align: center !important;
+  }
+}
