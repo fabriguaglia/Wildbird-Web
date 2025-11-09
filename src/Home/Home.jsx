@@ -1,5 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Facebook, Instagram, Linkedin } from 'lucide-react';
+import { FaWhatsapp, FaEnvelope, FaInstagram } from 'react-icons/fa';
+import { GiLibertyWing } from 'react-icons/gi';
 import Logo from './wildlogo.png';
 import './Home.css';
 import Inicio from '../Inicio/Inicio';
@@ -265,6 +267,213 @@ const Home = () => {
             <div className="col-4 col-md-2 text-center d-flex align-items-center justify-content-center" style={{ height: '100px' }}>
               <img src={Cartoon} alt='cartoon' style={{maxHeight:"80px", maxWidth: "100%", objectFit: "contain"}}/>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Seccion Contacto */}
+      <section id='contacto' className="py-5" style={{ backgroundColor: '#fff' }}>
+        <div className="container">
+          {/* Título con alas */}
+          <div className="d-flex align-items-center justify-content-center mb-5">
+            <GiLibertyWing 
+              size={40} 
+              style={{ 
+                color: '#F78ACE', 
+                marginRight: '20px',
+                transform: 'scaleX(-1)' // Voltear horizontalmente para que sea el ala izquierda
+              }} 
+            />
+            <h2 style={{ 
+              fontSize: '32px', 
+              fontWeight: '700', 
+              letterSpacing: '3px',
+              color: '#152139',
+              textTransform: 'uppercase',
+              margin: '0'
+            }}>
+              CONTACTO
+            </h2>
+            <GiLibertyWing 
+              size={40} 
+              style={{ 
+                color: '#F78ACE', 
+                marginLeft: '20px'
+              }} 
+            />
+          </div>
+
+          {/* Línea divisoria */}
+          <div style={{
+            width: '100%',
+            height: '1px',
+            backgroundColor: '#152139',
+            marginBottom: '50px'
+          }} />
+
+          {/* Tarjetas de contacto */}
+          <div className="row g-4 justify-content-center">
+            {/* WhatsApp */}
+            <div className="col-12 col-md-4">
+              <a 
+                href="https://wa.me/5491112345678" 
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: 'none' }}
+              >
+                <div style={{
+                  backgroundColor: '#f8f9fa',
+                  borderRadius: '8px',
+                  padding: '40px 30px',
+                  textAlign: 'center',
+                  height: '100%',
+                  transition: 'all 0.3s ease',
+                  cursor: 'pointer',
+                  boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-5px)';
+                  e.currentTarget.style.boxShadow = '0 8px 20px rgba(21, 33, 57, 0.15)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
+                }}
+                >
+                  <FaWhatsapp size={60} style={{ color: '#152139', marginBottom: '20px' }} />
+                  <h3 style={{
+                    fontSize: '20px',
+                    fontWeight: '600',
+                    letterSpacing: '2px',
+                    color: '#152139',
+                    marginBottom: '15px'
+                  }}>
+                    WhatsApp
+                  </h3>
+                  <p style={{
+                    color: '#152139',
+                    textDecoration: 'underline',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    margin: '0'
+                  }}>
+                    +54 9 11 1234-5678
+                  </p>
+                </div>
+              </a>
+            </div>
+
+            {/* Correo */}
+            <div className="col-12 col-md-4">
+              <a 
+                href="mailto:admin@wildbird.com"
+                style={{ textDecoration: 'none' }}
+              >
+                <div style={{
+                  backgroundColor: '#f8f9fa',
+                  borderRadius: '8px',
+                  padding: '40px 30px',
+                  textAlign: 'center',
+                  height: '100%',
+                  transition: 'all 0.3s ease',
+                  cursor: 'pointer',
+                  boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-5px)';
+                  e.currentTarget.style.boxShadow = '0 8px 20px rgba(21, 33, 57, 0.15)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
+                }}
+                >
+                  <FaEnvelope size={60} style={{ color: '#152139', marginBottom: '20px' }} />
+                  <h3 style={{
+                    fontSize: '20px',
+                    fontWeight: '600',
+                    letterSpacing: '2px',
+                    color: '#152139',
+                    marginBottom: '15px'
+                  }}>
+                    Correo
+                  </h3>
+                  <p style={{
+                    color: '#152139',
+                    textDecoration: 'underline',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    margin: '0'
+                  }}>
+                    admin@wildbird.com
+                  </p>
+                </div>
+              </a>
+            </div>
+
+            {/* Instagram */}
+            <div className="col-12 col-md-4">
+              <a 
+                href="https://instagram.com/wildbird.mkt" 
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: 'none' }}
+              >
+                <div style={{
+                  backgroundColor: '#f8f9fa',
+                  borderRadius: '8px',
+                  padding: '40px 30px',
+                  textAlign: 'center',
+                  height: '100%',
+                  transition: 'all 0.3s ease',
+                  cursor: 'pointer',
+                  boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-5px)';
+                  e.currentTarget.style.boxShadow = '0 8px 20px rgba(21, 33, 57, 0.15)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
+                }}
+                >
+                  <FaInstagram size={60} style={{ color: '#152139', marginBottom: '20px' }} />
+                  <h3 style={{
+                    fontSize: '20px',
+                    fontWeight: '600',
+                    letterSpacing: '2px',
+                    color: '#152139',
+                    marginBottom: '15px'
+                  }}>
+                    Instagram
+                  </h3>
+                  <p style={{
+                    color: '#152139',
+                    textDecoration: 'underline',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    margin: '0'
+                  }}>
+                    @wildbird.mkt
+                  </p>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          {/* Botón Ver Más */}
+          <div className="text-center mt-5">
+            <button 
+              className="custom-button" 
+              style={{ 
+                padding: '12px 35px', 
+                fontSize: '16px',
+                letterSpacing: '2px'
+              }}
+            >
+              <span>HABLEMOS</span>
+            </button>
           </div>
         </div>
       </section>
