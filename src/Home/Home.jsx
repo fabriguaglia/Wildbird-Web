@@ -174,9 +174,9 @@ const Home = () => {
                 color: '#152139',
                 marginBottom: '30px'
               }}>
-                En WildBird creemos en las marcas que se animan a volar alto y desafiar lo establecido.
-                Combinamos estrategia, creatividad y tecnología para construir marcas con propósito, integrando branding, comunicación y herramientas digitales e IA.
-                Ayudamos a empresas y emprendedores a crecer y destacar en sus industrias
+                En <strong>WildBird</strong> creemos que las marcas más poderosas son las que se animan a volar alto y desafían lo establecido.
+                Somos una agencia de marketing integral que combina <strong>estrategia, creatividad y autenticidad</strong> para construir marcas con propósito.
+                Ayudamos a empresas y emprendedores a <strong>crecer, conectar y diferenciarse</strong>, diseñando estrategias que integran: branding, comunicación y las últimas herramientas digitales y de AI para obtener resultados medibles
               </p>
               <a href="#servicios">
                 <button className="custom-button mt-3">
