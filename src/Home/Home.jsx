@@ -1,51 +1,97 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Accordion } from 'react-bootstrap'; 
 import { Facebook, Instagram, Linkedin } from 'lucide-react';
-import { FaWhatsapp, FaEnvelope, FaInstagram } from 'react-icons/fa';
+import { 
+  FaWhatsapp, 
+  FaEnvelope, 
+  FaInstagram,
+  FaBrain,
+  FaPencilRuler,
+  FaLaptopCode,
+  FaVideo,
+  FaBullhorn,
+  FaUsers,
+  FaCalendarAlt
+} from 'react-icons/fa';
 import { GiLibertyWing } from 'react-icons/gi';
 import Logo from './wildlogo.png';
 import './Home.css';
 import Inicio from '../Inicio/Inicio';
-import { useState } from 'react';
 import Alto from './alto.png';
 import Cartoon from './cartoon.jpg';
 import Disney from './disney.png';
 import Hbo from './hbo.jpg';
 import Playa from './playa.png';
 import Resort from './resort.png';
+import Warner from './warner.png';
+import soda from './soda.png';
+import quillehue from './quillehue.png';
 
 const Home = () => {
-  const [selectedService, setSelectedService] = useState('estrategia');
 
+  // Objeto de servicios actualizado con íconos
   const services = {
     estrategia: {
       title: 'Estrategia',
+      icon: FaBrain,
       description: 'Desarrollamos estrategias de posicionamiento e identidad de marca basadas en un análisis profundo y personalizado, que incluye el estudio de la competencia, la industria y el mercado. Ayudamos a tu marca a crecer con propósito y vuelo creativo'
     },
     branding: {
       title: 'Branding',
+      icon: FaPencilRuler,
       description: 'Creamos marcas con identidad y coherencia. Desarrollamos identidad visual y conceptual de tu marca: naming, logo, identidad gráfica, tone of voice..'
     },
     web: {
       title: 'Web & E-commerce',
+      icon: FaLaptopCode,
       description: 'Diseñamos y desarrollamos sitios web que reflejan la identidad de tu marca y tus objetivos de negocio. Ya sea una landing page, un sitio institucional o una tienda online, creamos experiencias digitales funcionales, estéticas y orientadas a la conversión.'
     },
     filmmaking: {
       title: 'Filmmaking & Content Creation',
+      icon: FaVideo,
       description: 'Capturamos tu marca desde nuevas alturas. Realizamos producciones audiovisuales creativas con enfoque cinematográfico: filmaciones con drone, spots publicitarios, reels y contenido digital que transmiten la esencia de tu marca con impacto visual y calidad profesional.'
     },
     advertising: {
       title: 'Advertising',
+      icon: FaBullhorn,
       description: 'Creamos e implementamos campañas de Paid Media en Meta Ads y Google Ads, potenciadas con inteligencia artificial para optimizar resultados. Estrategia, datos y creatividad se combinan para impulsar rendimiento, crecimiento y conversión.'
     },
     socialMedia: {
       title: 'Social Media & Influencer Marketing',
+      icon: FaUsers,
       description: 'Creamos estrategias de contenido que conectan. Desde la planificación editorial, community management y diseño de piezas, hasta campañas con influencers y partnerships estratégicos para amplificar tu mensaje.'
     },
     produccion: {
       title: 'Producción & Eventos',
+      icon: FaCalendarAlt,
       description: 'Ofrecemos un servicio integral que une: estrategia, creatividad y producción. Coordinamos eventos de gran escala o experiencias boutique, activaciones BTL e integración de marcas cuidando cada detalle del proceso.'
     }
   };
+  
+  // Estilo unificado para los títulos de sección
+  const sectionTitleStyle = {
+    fontSize: '32px', 
+    fontWeight: '700', 
+    letterSpacing: '3px',
+    color: '#152139',
+    textTransform: 'uppercase', 
+    margin: '0',
+    marginBottom: '50px', 
+    textAlign: 'center',
+  };
+
+  // Array de logos de clientes para el carrusel
+  const clientLogos = [
+    { src: Disney, alt: 'Disney' },
+    { src: Hbo, alt: 'HBO' },
+    { src: Playa, alt: 'Playa' },
+    { src: Resort, alt: 'Resort' },
+    { src: Alto, alt: 'Alto' },
+    { src: Cartoon, alt: 'Cartoon Network' },
+    { src: Warner, alt: 'Warner Bros' },
+    { src: soda, alt: 'Sodastream' },
+    { src: quillehue, alt: 'Quillehue' },
+  ];
 
   return (
     <div style={{ 
@@ -54,23 +100,20 @@ const Home = () => {
       backgroundColor: '#fff'
     }}>
       
-      {/* Header y Navigation (Responsive) */}
+      {/* Header y Navigation */}
       <header className="py-3 border-bottom" style={{ borderColor: '#152139' }}>
         <div className="container">
           <div className="row align-items-center">
-            {/* Oculto en móvil */}
             <div className="col-md-2 d-flex gap-3 hide-mobile">
               <Facebook size={20} className="social-icon" />
               <Instagram size={20} className="social-icon" />
               <Linkedin size={20} className="social-icon" />
             </div>
-            {/* Logo centrado en móvil y escritorio */}
             <div className="col-12 col-md-8 text-center">
                 <a href='/'>
                     <img src={Logo} alt="Wildbird Logo" style={{ height: '40px' }} />
                 </a>
             </div>
-            {/* Oculto en móvil */}
             <div className="col-md-2 text-end hide-mobile">
               <a href="#contacto" className="nav-link-custom">
                 <button className="custom-button mt-4">
@@ -82,7 +125,7 @@ const Home = () => {
         </div>
       </header>
 
-      {/* Navegación Principal (OCULTA EN MÓVIL mediante la clase "mobile-nav") */}
+      {/* Navegación Principal */}
       <nav className="py-3 border-bottom mobile-nav" style={{ borderColor: '#152139' }}>
         <div className="container">
           <div className="row text-center">
@@ -111,18 +154,14 @@ const Home = () => {
         </div>
       </div>
 
-      {/* About Section - Nueva estética */}
+      {/* About Section */}
       <section id='nosotros' className="py-5 about-services-bg">
         <div className="container">
           <h2 style={{ 
-            fontSize: '28px', 
-            fontWeight: '600', 
-            color: '#152139',
-            letterSpacing: '2px',
-            textTransform: 'uppercase', 
-            paddingBottom: '15px',
-            borderBottom: '2px solid #152139', 
-            marginBottom: '30px' 
+            ...sectionTitleStyle, 
+            color: '#152139', 
+            borderBottom: '1px solid #152139', 
+            paddingBottom: '15px' 
           }}>
             SOBRE WILDBIRD
           </h2>
@@ -149,139 +188,96 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Services Section - Nueva estructura */}
+      {/* Services Section - Acordeón */}
       <section id='servicios' className="py-5" style={{ backgroundColor: '#152139' }}>
         <div className="container">
           
           <h2 style={{ 
-            fontSize: '28px', 
-            fontWeight: '600', 
-            color: '#fff',
-            letterSpacing: '2px',
-            textTransform: 'uppercase', 
-            paddingBottom: '15px',
+            ...sectionTitleStyle, 
+            color: '#fff', 
             borderBottom: '1px solid #fff', 
-            marginBottom: '30px' 
+            paddingBottom: '15px' 
           }}>
             SERVICIOS
           </h2>
 
-          <div className="row">
-            {/* Lista de servicios clickeables */}
-            <div className="col-12 col-md-4 mb-4 mb-md-0">
-              <div style={{ position: 'sticky', top: '20px' }}>
-                {Object.entries(services).map(([key, service]) => (
-                  <p 
-                    key={key}
-                    onClick={() => setSelectedService(key)}
-                    style={{ 
-                      fontSize: '18px',
-                      fontWeight: '700',
-                      letterSpacing: '1.5px',
-                      marginBottom: '15px',
-                      color: selectedService === key ? '#F78ACE' : '#fff',
-                      cursor: 'pointer',
-                      transition: 'color 0.3s ease'
-                    }}
-                    onMouseEnter={(e) => e.target.style.color = '#F78ACE'}
-                    onMouseLeave={(e) => e.target.style.color = selectedService === key ? '#F78ACE' : '#fff'}
-                  >
-                    {service.title}
-                  </p>
-                ))}
-              </div>
-            </div>
-
-            {/* Descripción del servicio seleccionado */}
-            <div className="col-12 col-md-8">
-              <div style={{
-                padding: '30px',
-                backgroundColor: 'rgba(247, 138, 206, 0.1)',
-                borderRadius: '8px',
-                minHeight: '300px'
-              }}>
-                <h3 style={{
-                  fontSize: '24px',
-                  fontWeight: '700',
-                  letterSpacing: '1.5px',
-                  color: '#F78ACE',
-                  marginBottom: '20px'
-                }}>
-                  {services[selectedService].title}
-                </h3>
-                <p style={{
-                  fontSize: '16px',
-                  lineHeight: '1.8',
-                  color: '#fff'
-                }}>
-                  {services[selectedService].description}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="text-center mt-5">
-            <a href="#contacto">
-              <button className="custom-button-light" style={{ padding: '15px 27px', fontSize: '18px' }}>
-                <span>CONTÁCTANOS</span>
-              </button>
-            </a>
-          </div>
+          <Accordion>
+            {Object.entries(services).map(([key, service]) => (
+              <Accordion.Item 
+                eventKey={key} 
+                key={key}
+                className="service-accordion-item"
+              >
+                <Accordion.Button as="div" className="service-accordion-button">
+                  <service.icon size={30} />
+                  <h5>{service.title}</h5>
+                </Accordion.Button>
+                
+                <Accordion.Body className="service-accordion-body">
+                  <p>{service.description}</p>
+                  <a href="#contacto">
+                    <button className="custom-button-light">
+                      <span>SOLICITAR SERVICIO</span>
+                    </button>
+                  </a>
+                </Accordion.Body>
+              </Accordion.Item>
+            ))}
+          </Accordion>
+          
         </div>
       </section>
 
-      {/* Seccion Clientes - SIN CAMBIOS */}
+      {/* ============================================================== */}
+      {/* Seccion Clientes - MODIFICADA CON CARRUSEL */}
+      {/* ============================================================== */}
       <section id='clientes' className="py-5" style={{ backgroundColor: '#fff' }}>
         <div className="container">
           
           <h2 style={{ 
-            fontSize: '20px', 
-            fontWeight: '600', 
-            letterSpacing: '2px',
+            ...sectionTitleStyle, 
             color: '#152139',
-            textTransform: 'uppercase', 
-            paddingBottom: '15px',
             borderBottom: '1px solid #152139',
-            marginBottom: '25px' 
+            paddingBottom: '15px'
           }}>
             NUESTROS CLIENTES
           </h2>
 
-          <div className="row g-4 g-md-5 align-items-center justify-content-center">
-            
-            <div className="col-4 col-md-2 text-center d-flex align-items-center justify-content-center" style={{ height: '100px' }}>
-              <img src={Disney} alt='disney' style={{maxHeight:"80px", maxWidth: "100%", objectFit: "contain"}}/>
-            </div>
-            <div className="col-4 col-md-2 text-center d-flex align-items-center justify-content-center" style={{ height: '100px' }}>
-              <img src={Hbo} alt='hbo' style={{maxHeight:"80px", maxWidth: "100%", objectFit: "contain"}}/>
-            </div>
-            <div className="col-4 col-md-2 text-center d-flex align-items-center justify-content-center" style={{ height: '100px' }}>
-              <img src={Playa} alt='playa' style={{maxHeight:"80px", maxWidth: "100%", objectFit: "contain"}}/>
-            </div>
-            <div className="col-4 col-md-2 text-center d-flex align-items-center justify-content-center" style={{ height: '100px' }}>
-              <img src={Resort} alt='resort' style={{maxHeight:"80px", maxWidth: "100%", objectFit: "contain"}}/>
-            </div>
-            <div className="col-4 col-md-2 text-center d-flex align-items-center justify-content-center" style={{ height: '100px' }}>
-              <img src={Alto} alt='alto' style={{maxHeight:"80px", maxWidth: "100%", objectFit: "contain"}}/>
-            </div>
-            <div className="col-4 col-md-2 text-center d-flex align-items-center justify-content-center" style={{ height: '100px' }}>
-              <img src={Cartoon} alt='cartoon' style={{maxHeight:"80px", maxWidth: "100%", objectFit: "contain"}}/>
+          {/* Contenedor del Carrusel */}
+          <div className="client-carousel-container">
+            {/* Div que se anima */}
+            <div className="client-carousel-scroller">
+              {/* Primer set de logos */}
+              {clientLogos.map((logo, index) => (
+                <div className="client-logo-item" key={`logo-a-${index}`}>
+                  <img src={logo.src} alt={logo.alt} />
+                </div>
+              ))}
+              {/* Segundo set de logos (duplicado para bucle) */}
+              {clientLogos.map((logo, index) => (
+                <div className="client-logo-item" key={`logo-b-${index}`}>
+                  <img src={logo.src} alt={logo.alt} />
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
+      {/* ============================================================== */}
+      {/* FIN DE SECCIÓN CLIENTES */}
+      {/* ============================================================== */}
+
 
       {/* Seccion Contacto */}
       <section id='contacto' className="py-5" style={{ backgroundColor: '#fff' }}>
         <div className="container">
-          {/* Título con alas */}
           <div className="d-flex align-items-center justify-content-center mb-5">
             <GiLibertyWing 
               size={40} 
               style={{ 
                 color: '#F78ACE', 
                 marginRight: '20px',
-                transform: 'scaleX(-1)' // Voltear horizontalmente para que sea el ala izquierda
+                transform: 'scaleX(-1)'
               }} 
             />
             <h2 style={{ 
@@ -303,7 +299,6 @@ const Home = () => {
             />
           </div>
 
-          {/* Línea divisoria */}
           <div style={{
             width: '100%',
             height: '1px',
@@ -337,7 +332,7 @@ const Home = () => {
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
+                  e.currentTarget.style.boxShadow = '0 2px 4px rgba(0,0,a-0,0.1)';
                 }}
                 >
                   <FaWhatsapp size={60} style={{ color: '#152139', marginBottom: '20px' }} />

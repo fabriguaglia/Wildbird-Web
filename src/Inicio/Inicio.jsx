@@ -1,9 +1,10 @@
 import React, { useEffect, useRef } from 'react';
-import Logo from "./W.jpeg";
+import Logo from "./W.png";
 
 const Inicio = () => {
-  const wordRef = useRef(null);
-  const animationRef = useRef(null);
+  const wordRefDesktop = useRef(null);
+  const wordRefMobile = useRef(null);
+  // Eliminado: const animationRef = useRef(null);
 
   useEffect(() => {
     // Cargar fuente Montserrat
@@ -27,67 +28,82 @@ const Inicio = () => {
       
       let currentIndex = 0;
 
-      const animateWord = () => {
-        const word = words[currentIndex];
-        const wordElement = wordRef.current;
+      // 🌟 Usar gsap.context() para gestionar la limpieza de animaciones
+      let ctx = gsap.context(() => {
         
-        if (!wordElement) return;
+        const animateWord = () => {
+          const word = words[currentIndex];
+          const wordElementDesktop = wordRefDesktop.current;
+          const wordElementMobile = wordRefMobile.current;
+          
+          // Animar ambos elementos (desktop y mobile)
+          [wordElementDesktop, wordElementMobile].forEach(wordElement => {
+            if (!wordElement) return;
 
-        // Limpiar contenido
-        wordElement.innerHTML = '';
-        wordElement.style.color = word.color;
+            // Limpiar contenido
+            wordElement.innerHTML = '';
+            wordElement.style.color = word.color;
 
-        // Crear spans para cada letra
-        const letters = word.text.split('').map((letter, i) => {
-          const span = document.createElement('span');
-          span.textContent = letter;
-          span.style.opacity = '0';
-          span.style.display = 'inline-block';
-          wordElement.appendChild(span);
-          return span;
-        });
+            // Crear spans para cada letra
+            const letters = word.text.split('').map((letter, i) => {
+              const span = document.createElement('span');
+              span.textContent = letter;
+              span.style.opacity = '0';
+              span.style.display = 'inline-block';
+              wordElement.appendChild(span);
+              return span;
+            });
 
-        // Animar letras
-        const animation = gsap.fromTo(
-          letters,
-          { opacity: 0, y: 20 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.1,
-            stagger: 0.05,
-            ease: 'power2.out',
-            onComplete: () => {
-              // Esperar antes de cambiar palabra
+            // Animar letras
+            gsap.fromTo(
+              letters,
+              { opacity: 0, y: 20 },
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.1,
+                stagger: 0.05,
+                ease: 'power2.out'
+              }
+            );
+          });
+
+          // Programar salida y siguiente palabra
+          gsap.delayedCall(2, () => {
+            [wordElementDesktop, wordElementMobile].forEach(wordElement => {
+              if (!wordElement) return;
+              const letters = Array.from(wordElement.children);
               gsap.to(letters, {
                 opacity: 0,
                 y: -20,
                 duration: 0.1,
                 stagger: 0.03,
-                delay: 2,
-                ease: 'power2.in',
-                onComplete: () => {
-                  currentIndex = (currentIndex + 1) % words.length;
-                  animateWord();
-                }
+                ease: 'power2.in'
               });
-            }
-          }
-        );
-        
-        animationRef.current = animation;
-      };
+            });
+            
+            gsap.delayedCall(0.5, () => {
+              currentIndex = (currentIndex + 1) % words.length;
+              animateWord();
+            });
+          });
+        };
 
-      animateWord();
+        animateWord();
+        
+      }, [wordRefDesktop, wordRefMobile]); // El contexto se aplica a estos refs
+      
+      // La función de limpieza revierte el contexto de GSAP
+      return () => ctx.revert();
     };
 
     document.head.appendChild(script);
 
     return () => {
-      const currentAnimation = animationRef.current;
-      if (currentAnimation) {
-        currentAnimation.kill();
-      }
+      // Eliminado el código que hacía referencia a animationRef
+      // Mantenemos la limpieza para los tags de <link> y <script> si es necesario
+      document.head.removeChild(link);
+      document.head.removeChild(script);
     };
   }, []);
 
@@ -98,37 +114,23 @@ const Inicio = () => {
       maxWidth: '1400px',
       margin: '0 auto'
     }}>
-      <div style={{ 
+      {/* Desktop Layout */}
+      <div className="desktop-layout" style={{ 
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        flexWrap: 'wrap',
-        gap: '40px'
+        gap: '80px',
+        maxWidth: '1100px',
+        margin: '0 auto'
       }}>
-        {/* Logo */}
-        <div style={{ 
-          flex: '0 1 auto',
-          textAlign: 'center'
-        }}>
-          <img 
-            src={Logo}
-            alt="Wildbird Logo" 
-            style={{ 
-              maxWidth: '100%',
-              width: '250px',
-              height: 'auto'
-            }}
-          />
-        </div>
-
-        {/* Texto */}
+        {/* Texto a la izquierda - Desktop */}
         <div 
-          className="text-container"
+          className="text-container-desktop"
           style={{ 
             flex: '1 1 auto',
             minWidth: '300px',
             maxWidth: '600px',
-            textAlign: 'right'
+            textAlign: 'left'
           }}
         >
           <h1 
@@ -144,7 +146,7 @@ const Inicio = () => {
           >
             REBELDÍA{' '}
             <span 
-              ref={wordRef}
+              ref={wordRefDesktop}
               style={{ 
                 display: 'inline-block',
                 color: '#152139',
@@ -156,8 +158,82 @@ const Inicio = () => {
             {' '}PARA MARCAS QUE VUELAN ALTO
           </h1>
           
-          <div className="button-container" style={{ textAlign: 'right' }}>
-            <a href='#about'>
+          <div style={{ textAlign: 'left' }}>
+            <a href='#nosotros'>
+              <button className="custom-hero-button">
+                <span>HABLEMOS</span>
+              </button>
+            </a>
+          </div>
+        </div>
+
+        {/* Logo a la derecha - Desktop */}
+        <div className="logo-desktop" style={{ 
+          flex: '0 1 auto',
+          textAlign: 'center'
+        }}>
+          <img 
+            src={Logo}
+            alt="Wildbird Logo" 
+            style={{ 
+              maxWidth: '100%',
+              width: '350px',
+              height: 'auto'
+            }}
+          />
+        </div>
+      </div>
+
+      {/* Mobile Layout */}
+      <div className="mobile-layout">
+        {/* Logo primero - Mobile */}
+        <div style={{ 
+          textAlign: 'center',
+          marginBottom: '30px'
+        }}>
+          <img 
+            src={Logo}
+            alt="Wildbird Logo" 
+            className="logo-mobile"
+            style={{ 
+              maxWidth: '100%',
+              width: '200px',
+              height: 'auto'
+            }}
+          />
+        </div>
+
+        {/* Texto después, centrado - Mobile */}
+        <div style={{ 
+          textAlign: 'center'
+        }}>
+          <h1 
+            className="main-heading-mobile"
+            style={{ 
+              fontSize: 'clamp(1.5rem, 6vw, 2.5rem)',
+              fontWeight: '800',
+              lineHeight: '1.3',
+              color: '#152139',
+              letterSpacing: '0.02em',
+              margin: '0 0 25px 0'
+            }}
+          >
+            REBELDÍA{' '}
+            <span 
+              ref={wordRefMobile}
+              style={{ 
+                display: 'inline-block',
+                color: '#152139',
+                whiteSpace: 'nowrap'
+              }}
+            >
+              CREATIVA
+            </span>
+            {' '}PARA MARCAS QUE VUELAN ALTO
+          </h1>
+          
+          <div>
+            <a href='#nosotros'>
               <button className="custom-hero-button">
                 <span>HABLEMOS</span>
               </button>
@@ -166,17 +242,24 @@ const Inicio = () => {
         </div>
       </div>
 
-      {/* Versión móvil */}
       <style>{`
+        /* Desktop: Mostrar layout desktop, ocultar mobile */
+        .desktop-layout {
+          display: flex !important;
+        }
+        
+        .mobile-layout {
+          display: none !important;
+        }
+        
+        /* Mobile: Mostrar layout mobile, ocultar desktop */
         @media (max-width: 991px) {
-          .text-container {
-            text-align: center !important;
+          .desktop-layout {
+            display: none !important;
           }
-          .main-heading {
-            text-align: center !important;
-          }
-          .button-container {
-            text-align: center !important;
+          
+          .mobile-layout {
+            display: block !important;
           }
         }
         

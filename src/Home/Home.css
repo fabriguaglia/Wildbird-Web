@@ -170,21 +170,17 @@
   background: transparent;
   transition: all 0.3s ease;
 }
-
 .service-card-dark:hover {
   transform: translateY(-5px);
 }
-
 .service-icon-dark {
   color: #F78ACE;
   margin-bottom: 20px;
   transition: transform 0.3s ease;
 }
-
 .service-card-dark:hover .service-icon-dark {
   transform: scale(1.1);
 }
-
 .service-card-title-dark {
   font-size: 16px;
   font-weight: 700;
@@ -192,12 +188,12 @@
   color: #F78ACE;
   margin-bottom: 15px;
 }
-
 .service-card-text-dark {
   font-size: 14px;
   line-height: 1.7;
   color: #fff;
 }
+
 
 .custom-button-light {
   display: inline-block;
@@ -239,10 +235,8 @@
     text-align: right; 
   }
   
-  /* Ajuste específico para que el contenedor rotativo se pegue al texto en escritorio */
   .hero-title-desktop .rotating-word-container {
-    /* Si el texto está a la derecha, debe ir a la izquierda del siguiente texto (que está en la línea de abajo) */
-    margin-right: -10px; /* Pequeño ajuste si se necesita */
+    margin-right: -10px; 
   }
 }
 
@@ -250,52 +244,37 @@
    MEDIA QUERY: MÓVIL (<768px)
    ================================================================= */
 @media (max-width: 767.98px) {
-  /* 1. Ocultar íconos sociales y botón de contacto superior */
   .hide-mobile {
     display: none !important;
   }
-  
-  /* 2. OCULTAR BARRA DE NAVEGACIÓN PRINCIPAL (NOSOTROS, SERVICIOS, etc.) */
   .mobile-nav {
     display: none !important; 
   }
-
-  /* 3. Ajuste de enlaces si existiera */
   .nav-link-custom {
     font-size: 12px !important; 
     padding: 8px 8px !important; 
   }
-  
-  /* 4. Alinear el texto al centro (Horizontal) */
   .hero-text-col {
     text-align: center !important; 
     padding-left: 15px !important;
     padding-right: 15px !important;
   }
-  
-  /* 5. Título ajustado para móvil (AGRANDADO) */
   .hero-title {
-    font-size: 30px !important; /* Ajuste para mantener la proporción */
+    font-size: 30px !important; 
     line-height: 1.2 !important;
     margin-bottom: 15px !important;
   }
-  
-  /* 6. Contenedor de la palabra rotante ajustado */
   .rotating-word-container {
-    min-width: 170px; /* Ajustado para el tamaño de la palabra */
-    height: 36px; /* Ajustado para el font-size de 30px */
+    min-width: 170px; 
+    height: 36px; 
     margin-left: 0px; 
     display: inline-flex; 
-    vertical-align: baseline; /* MODIFICADO: Alinear con el texto */
+    vertical-align: baseline; 
   }
-  
-  /* NUEVO: Asegurarse que el contenedor de letras se alinee correctamente */
   .letter-container {
     align-items: flex-end; 
     bottom: 0; 
   }
-
-  /* 7. Ajuste de botón */
   .custom-button {
       padding: 8px 15px;
       font-size: 14px;
@@ -303,28 +282,168 @@
       margin-left: 0; 
       margin-top: 5px !important; 
   }
-  
   .custom-button::before {
     width: calc(100% - 30px);
   }
-  
-  /* 8. Imagen en móvil (AGRANDADA y centrada) */
   .hero-image-mobile img {
     max-height: 250px !important; 
     max-width: 80% !important; 
     margin: 0 auto; 
     display: block;
   }
-  
-  /* 9. Padding de la sección hero */
   .hero-section {
     padding: 20px 0 !important;
   }
-
-  /* 10. Limpieza de padding de columna de imagen */
   .hero-image-col {
       padding-left: 0 !important;
       padding-right: 0 !important;
       text-align: center !important;
+  }
+}
+
+/* =================================================================
+   NUEVOS ESTILOS: ACORDEÓN DE SERVICIOS
+   ================================================================= */
+
+.service-accordion-item {
+  background-color: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 8px !important;
+  margin-bottom: 20px;
+  overflow: hidden; 
+}
+
+.service-accordion-button {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: #fff !important;
+  padding: 25px 30px !important;
+  border: none !important;
+  box-shadow: none !important;
+  width: 100%;
+  text-align: left;
+  display: flex !important;
+  align-items: center !important;
+  gap: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.service-accordion-button h5 {
+   margin: 0;
+   font-size: 20px;
+   font-weight: 700;
+   letter-spacing: 1.5px;
+   color: #ffffff; 
+}
+
+.service-accordion-button svg {
+  color: #F78ACE; 
+  flex-shrink: 0;
+}
+
+.service-accordion-button.accordion-button::after {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23F78ACE'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e") !important;
+  background-size: 1.5rem 1.5rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  margin-left: auto;
+}
+
+.service-accordion-button.accordion-button:not(.collapsed)::after {
+   transform: rotate(-180deg);
+}
+
+.service-accordion-button.accordion-button:focus {
+    box-shadow: 0 0 0 0.25rem rgba(247, 138, 206, 0.25) !important; 
+}
+
+.service-accordion-button.accordion-button.collapsed:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.service-accordion-body {
+  background-color: #1A2A47;
+  color: #fff;
+  font-size: 15px;
+  line-height: 1.7;
+  padding: 30px;
+}
+
+.service-accordion-body p {
+    margin-bottom: 25px; 
+}
+
+@media (max-width: 767.98px) {
+  .service-accordion-button h5 {
+    font-size: 16px;
+  }
+  .service-accordion-button {
+    padding: 20px 20px !important;
+    gap: 15px;
+  }
+  .service-accordion-button.accordion-button::after {
+    background-size: 1.2rem 1.2rem;
+    height: 1.2rem;
+    width: 1.2rem;
+  }
+}
+
+/* =================================================================
+   NUEVOS ESTILOS: CARRUSEL DE CLIENTES
+   ================================================================= */
+
+.client-carousel-container {
+  width: 100%;
+  overflow: hidden;
+  /* Efecto de degradado en los bordes para que los logos aparezcan suavemente */
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+.client-carousel-scroller {
+  display: flex;
+  align-items: center;
+  width: max-content; /* Deja que el contenido defina el ancho */
+  /* La animación dura 30s, es lineal y se repite infinitamente */
+  animation: scroll-clients 30s linear infinite;
+}
+
+/* Pausa la animación al pasar el mouse */
+.client-carousel-scroller:hover {
+  animation-play-state: paused;
+}
+
+.client-logo-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 40px; /* Espacio entre logos */
+  flex-shrink: 0;
+}
+
+.client-logo-item img {
+  max-height: 70px; /* Altura máxima para los logos */
+  max-width: 150px; /* Ancho máximo para logos muy anchos */
+  object-fit: contain;
+  opacity: 0.7; /* Tono sutil */
+  transition: opacity 0.3s ease;
+}
+
+.client-logo-item img:hover {
+    opacity: 1; /* Opacidad total al hacer hover */
+}
+
+/* Definición de la animación:
+  Mueve el 'scroller' de 0% a -50%.
+  Como el contenido está duplicado (ocupa 200% del ancho original),
+  moverlo -50% del *nuevo* ancho total es exactamente el 100% del ancho original,
+  creando un bucle perfecto.
+*/
+@keyframes scroll-clients {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
   }
 }
