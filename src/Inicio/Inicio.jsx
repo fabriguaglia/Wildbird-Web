@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import Logo from "./W.png";
+import Logo2 from "./logo2.png";
 
 const Inicio = () => {
   const wordRefDesktop = useRef(null);
@@ -120,7 +121,7 @@ const Inicio = () => {
   return (
     <div style={{ 
       fontFamily: 'Montserrat, sans-serif',
-      padding: '40px 20px',
+      padding: '50px 20px',
       maxWidth: '1400px',
       margin: '0 auto'
     }}>
@@ -220,12 +221,12 @@ const Inicio = () => {
           marginBottom: '15px'
         }}>
           <img 
-            src={Logo}
+            src={Logo2}
             alt="Wildbird Logo" 
             className="logo-mobile"
             style={{ 
               maxWidth: '100%',
-              width: '280px',
+              width: '300px',
               height: 'auto'
             }}
           />
