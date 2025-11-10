@@ -154,7 +154,7 @@ const Home = () => {
         </div>
       </div>
 
-      {/* About Section */}
+      {/* About Section - TEXTO MÁS GRANDE */}
       <section id='nosotros' className="py-5 about-services-bg">
         <div className="container">
           <h2 style={{ 
@@ -170,9 +170,10 @@ const Home = () => {
             <div className="col-12">
               <p style={{ 
                 lineHeight: '1.8', 
-                fontSize: '16px',
+                fontSize: '18px', // Aumentado a 18px
                 color: '#152139',
-                marginBottom: '30px'
+                marginBottom: '30px',
+                textAlign: 'center'
               }}>
                 En <strong>WildBird</strong> creemos que las marcas más poderosas son las que se animan a volar alto y desafían lo establecido.
                 Somos una agencia de marketing integral que combina <strong>estrategia, creatividad y autenticidad</strong> para construir marcas con propósito.
@@ -228,9 +229,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ============================================================== */}
-      {/* Seccion Clientes - MODIFICADA CON CARRUSEL */}
-      {/* ============================================================== */}
+      {/* Seccion Clientes - CARRUSEL */}
       <section id='clientes' className="py-5" style={{ backgroundColor: '#fff' }}>
         <div className="container">
           
@@ -263,9 +262,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      {/* ============================================================== */}
       {/* FIN DE SECCIÓN CLIENTES */}
-      {/* ============================================================== */}
 
 
       {/* Seccion Contacto */}

@@ -4,7 +4,6 @@ import Logo from "./W.png";
 const Inicio = () => {
   const wordRefDesktop = useRef(null);
   const wordRefMobile = useRef(null);
-  // Eliminado: const animationRef = useRef(null);
 
   useEffect(() => {
     // Cargar fuente Montserrat
@@ -13,22 +12,34 @@ const Inicio = () => {
     link.rel = 'stylesheet';
     document.head.appendChild(link);
 
-    // Importar GSAP
+    // Importar GSAP (Aseguramos el protocolo HTTPS y revisamos la URL)
     const script = document.createElement('script');
     script.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js';
     script.async = true;
     
+    // **NOTA:** Es más seguro incluir librerías como GSAP mediante npm/yarn si es posible. 
+    // Mantenemos el enfoque dinámico para evitar cambios mayores.
+    document.head.appendChild(script);
+
     script.onload = () => {
       const gsap = window.gsap;
       
+      // Manejo de errores: Si gsap sigue siendo undefined después de onload,
+      // algo en el entorno de carga está bloqueando el script.
+      if (!gsap) {
+          console.error("GSAP no se ha cargado correctamente. Verifica la URL o el entorno de red.");
+          return;
+      }
+      
       const words = [
         { text: 'CREATIVA', color: '#152139' },
-        { text: 'ATREVIDA', color: '#F78ACE' }
+        { text: 'AUDAZ', color: '#F78ACE' },
+        { text: 'INNOVADORA', color: '#152139' },
+        { text: 'GENUINA', color: '#F78ACE' },
       ];
       
       let currentIndex = 0;
 
-      // 🌟 Usar gsap.context() para gestionar la limpieza de animaciones
       let ctx = gsap.context(() => {
         
         const animateWord = () => {
@@ -36,15 +47,12 @@ const Inicio = () => {
           const wordElementDesktop = wordRefDesktop.current;
           const wordElementMobile = wordRefMobile.current;
           
-          // Animar ambos elementos (desktop y mobile)
           [wordElementDesktop, wordElementMobile].forEach(wordElement => {
             if (!wordElement) return;
 
-            // Limpiar contenido
             wordElement.innerHTML = '';
             wordElement.style.color = word.color;
 
-            // Crear spans para cada letra
             const letters = word.text.split('').map((letter, i) => {
               const span = document.createElement('span');
               span.textContent = letter;
@@ -54,7 +62,6 @@ const Inicio = () => {
               return span;
             });
 
-            // Animar letras
             gsap.fromTo(
               letters,
               { opacity: 0, y: 20 },
@@ -68,7 +75,6 @@ const Inicio = () => {
             );
           });
 
-          // Programar salida y siguiente palabra
           gsap.delayedCall(2, () => {
             [wordElementDesktop, wordElementMobile].forEach(wordElement => {
               if (!wordElement) return;
@@ -91,19 +97,23 @@ const Inicio = () => {
 
         animateWord();
         
-      }, [wordRefDesktop, wordRefMobile]); // El contexto se aplica a estos refs
+      }, [wordRefDesktop, wordRefMobile]);
       
-      // La función de limpieza revierte el contexto de GSAP
-      return () => ctx.revert();
+      return () => {
+        // Limpieza de GSAP
+        ctx.revert();
+        // Limpieza de tags dinámicos
+        document.head.removeChild(link);
+        document.head.removeChild(script);
+      };
     };
 
-    document.head.appendChild(script);
-
+    // La limpieza de los tags debe estar al final
     return () => {
-      // Eliminado el código que hacía referencia a animationRef
-      // Mantenemos la limpieza para los tags de <link> y <script> si es necesario
-      document.head.removeChild(link);
-      document.head.removeChild(script);
+      // El script y el link se remueven en el onload si se carga exitosamente 
+      // o aquí si el componente se desmonta antes de la carga.
+      if (document.head.contains(link)) document.head.removeChild(link);
+      if (document.head.contains(script)) document.head.removeChild(script);
     };
   }, []);
 
@@ -114,12 +124,15 @@ const Inicio = () => {
       maxWidth: '1400px',
       margin: '0 auto'
     }}>
-      {/* Desktop Layout */}
+      {/* ========================================
+        DESKTOP LAYOUT (4 LÍNEAS)
+        ========================================
+      */}
       <div className="desktop-layout" style={{ 
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: '80px',
+        gap: '40px', 
         maxWidth: '1100px',
         margin: '0 auto'
       }}>
@@ -144,18 +157,28 @@ const Inicio = () => {
               margin: '0 0 30px 0'
             }}
           >
-            REBELDÍA{' '}
-            <span 
-              ref={wordRefDesktop}
-              style={{ 
-                display: 'inline-block',
-                color: '#152139',
-                whiteSpace: 'nowrap'
-              }}
-            >
-              CREATIVA
-            </span>
-            {' '}PARA MARCAS QUE VUELAN ALTO
+            {/* LÍNEA 1: REBELDÍA */}
+            <div className="text-line">REBELDÍA</div>
+            
+            {/* LÍNEA 2: PALABRA CAMBIANTE */}
+            <div className="text-line">
+              <span 
+                ref={wordRefDesktop}
+                style={{ 
+                  display: 'inline-block',
+                  minHeight: '1.2em', // Altura fija para evitar movimiento vertical
+                  whiteSpace: 'nowrap' 
+                }}
+              >
+                {/* Palabra animada */}
+              </span>
+            </div>
+            
+            {/* LÍNEA 3: PARA MARCAS */}
+            <div className="text-line">PARA MARCAS</div>
+            
+            {/* LÍNEA 4: QUE VUELAN ALTO */}
+            <div className="text-line">QUE VUELAN ALTO</div>
           </h1>
           
           <div style={{ textAlign: 'left' }}>
@@ -170,26 +193,31 @@ const Inicio = () => {
         {/* Logo a la derecha - Desktop */}
         <div className="logo-desktop" style={{ 
           flex: '0 1 auto',
-          textAlign: 'center'
+          textAlign: 'center',
+          position: 'relative',
+          marginTop: '-30px', 
         }}>
           <img 
             src={Logo}
             alt="Wildbird Logo" 
             style={{ 
               maxWidth: '100%',
-              width: '350px',
+              width: '450px',
               height: 'auto'
             }}
           />
         </div>
       </div>
 
-      {/* Mobile Layout */}
+      {/* ========================================
+        MOBILE LAYOUT (3 LÍNEAS)
+        ========================================
+      */}
       <div className="mobile-layout">
         {/* Logo primero - Mobile */}
         <div style={{ 
           textAlign: 'center',
-          marginBottom: '30px'
+          marginBottom: '15px'
         }}>
           <img 
             src={Logo}
@@ -197,7 +225,7 @@ const Inicio = () => {
             className="logo-mobile"
             style={{ 
               maxWidth: '100%',
-              width: '200px',
+              width: '280px',
               height: 'auto'
             }}
           />
@@ -218,18 +246,28 @@ const Inicio = () => {
               margin: '0 0 25px 0'
             }}
           >
-            REBELDÍA{' '}
-            <span 
-              ref={wordRefMobile}
-              style={{ 
-                display: 'inline-block',
-                color: '#152139',
-                whiteSpace: 'nowrap'
-              }}
-            >
-              CREATIVA
-            </span>
-            {' '}PARA MARCAS QUE VUELAN ALTO
+            {/* LÍNEA 1: REBELDÍA + PALABRA CAMBIANTE */}
+            <div className="text-line">
+              REBELDÍA{' '}
+              <span 
+                ref={wordRefMobile}
+                style={{ 
+                  display: 'inline-block',
+                  // Min-width para asegurar el espacio de la palabra más larga y evitar el movimiento lateral
+                  minWidth: '130px', 
+                  whiteSpace: 'nowrap',
+                  textAlign: 'left',
+                }}
+              >
+                {/* Palabra animada (Solución al error: Ahora se inyecta correctamente) */}
+              </span>
+            </div>
+            
+            {/* LÍNEA 2: PARA MARCAS */}
+            <div className="text-line">PARA MARCAS</div>
+            
+            {/* LÍNEA 3: QUE VUELAN ALTO */}
+            <div className="text-line">QUE VUELAN ALTO</div>
           </h1>
           
           <div>
@@ -243,6 +281,11 @@ const Inicio = () => {
       </div>
 
       <style>{`
+        /* Clase para forzar cada frase a una nueva línea */
+        .main-heading .text-line, .main-heading-mobile .text-line {
+            display: block;
+        }
+
         /* Desktop: Mostrar layout desktop, ocultar mobile */
         .desktop-layout {
           display: flex !important;
@@ -261,8 +304,14 @@ const Inicio = () => {
           .mobile-layout {
             display: block !important;
           }
+          
+          /* Forzar el centrado del texto en el h1 del móvil */
+          .main-heading-mobile .text-line {
+              text-align: center;
+          }
         }
         
+        /* ... (Tu CSS de botón y estilos generales) ... */
         .custom-hero-button {
           display: inline-block;
           border: none;

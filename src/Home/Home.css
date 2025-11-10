@@ -330,7 +330,7 @@
 
 .service-accordion-button h5 {
    margin: 0;
-   font-size: 20px;
+   font-size: 22px; /* AUMENTADO: De 20px a 22px */
    font-weight: 700;
    letter-spacing: 1.5px;
    color: #ffffff; 
@@ -364,7 +364,7 @@
 .service-accordion-body {
   background-color: #1A2A47;
   color: #fff;
-  font-size: 15px;
+  font-size: 18px; /* AUMENTADO: De 15px a 16px */
   line-height: 1.7;
   padding: 30px;
 }
@@ -375,7 +375,7 @@
 
 @media (max-width: 767.98px) {
   .service-accordion-button h5 {
-    font-size: 16px;
+    font-size: 18px; /* AUMENTADO: De 16px a 18px en móvil */
   }
   .service-accordion-button {
     padding: 20px 20px !important;
