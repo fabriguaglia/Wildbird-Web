@@ -79,7 +79,7 @@ const Footer = () => {
             </h4>
             {/* d-flex y justify-content-end para alinear los íconos a la derecha en desktop */}
             <div className="d-flex gap-4 social-media-icons justify-content-center justify-content-md-end">
-              <a href="#facebook" aria-label="Facebook">
+              <a href="https://www.facebook.com/share/1D5w2CnTD7/?mibextid=wwXIfr" aria-label="Facebook">
                 <Facebook size={24} className="footer-icon" />
               </a>
               <a href="#instagram" aria-label="Instagram">

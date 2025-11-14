@@ -105,9 +105,9 @@ const Home = () => {
         <div className="container">
           <div className="row align-items-center">
             <div className="col-md-2 d-flex gap-3 hide-mobile">
-              <Facebook size={20} className="social-icon" />
-              <Instagram size={20} className="social-icon" />
-              <Linkedin size={20} className="social-icon" />
+              <a href='https://www.facebook.com/share/1D5w2CnTD7/?mibextid=wwXIfr'><Facebook size={20} className="social-icon" /></a>
+              <a href='/'><Instagram size={20} className="social-icon" /></a>
+              <a href='/'><Linkedin size={20} className="social-icon" /></a>
             </div>
             <div className="col-12 col-md-8 text-center">
                 <a href='/'>
@@ -308,7 +308,7 @@ const Home = () => {
             {/* WhatsApp */}
             <div className="col-12 col-md-4">
               <a 
-                href="https://wa.me/5491112345678" 
+                href="https://wa.me/5491165692110" 
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ textDecoration: 'none' }}
@@ -349,7 +349,7 @@ const Home = () => {
                     fontWeight: '500',
                     margin: '0'
                   }}>
-                    +54 9 11 1234-5678
+                    +54 9 11 6569-2110
                   </p>
                 </div>
               </a>
@@ -358,7 +358,7 @@ const Home = () => {
             {/* Correo */}
             <div className="col-12 col-md-4">
               <a 
-                href="mailto:admin@wildbird.com"
+                href="mailto:luciahuergo.wildbird@gmail.com"
                 style={{ textDecoration: 'none' }}
               >
                 <div style={{
@@ -397,7 +397,7 @@ const Home = () => {
                     fontWeight: '500',
                     margin: '0'
                   }}>
-                    admin@wildbird.com
+                    luciahuergo.wildbird@gmail.com
                   </p>
                 </div>
               </a>
@@ -406,7 +406,7 @@ const Home = () => {
             {/* Instagram */}
             <div className="col-12 col-md-4">
               <a 
-                href="https://instagram.com/wildbird.mkt" 
+                href="#contacto" 
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ textDecoration: 'none' }}
@@ -447,7 +447,7 @@ const Home = () => {
                     fontWeight: '500',
                     margin: '0'
                   }}>
-                    @wildbird.mkt
+                    @
                   </p>
                 </div>
               </a>
@@ -456,16 +456,9 @@ const Home = () => {
 
           {/* Botón Ver Más */}
           <div className="text-center mt-5">
-            <button 
-              className="custom-button" 
-              style={{ 
-                padding: '12px 35px', 
-                fontSize: '16px',
-                letterSpacing: '2px'
-              }}
-            >
-              <span>HABLEMOS</span>
-            </button>
+            <button className="custom-button mt-3">
+                  <span>HABLEMOS</span>
+                </button>
           </div>
         </div>
       </section>
