@@ -106,7 +106,7 @@ const Home = () => {
           <div className="row align-items-center">
             <div className="col-md-2 d-flex gap-3 hide-mobile">
               <a href='https://www.facebook.com/share/1D5w2CnTD7/?mibextid=wwXIfr'><Facebook size={20} className="social-icon" /></a>
-              <a href='/'><Instagram size={20} className="social-icon" /></a>
+              <a href='https://www.instagram.com/wildbird_agency/?utm_source=ig_web_button_share_sheet'><Instagram size={20} className="social-icon" /></a>
               <a href='/'><Linkedin size={20} className="social-icon" /></a>
             </div>
             <div className="col-12 col-md-8 text-center">
@@ -406,7 +406,7 @@ const Home = () => {
             {/* Instagram */}
             <div className="col-12 col-md-4">
               <a 
-                href="#contacto" 
+                href="https://www.instagram.com/wildbird_agency/?utm_source=ig_web_button_share_sheet" 
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ textDecoration: 'none' }}
@@ -447,7 +447,7 @@ const Home = () => {
                     fontWeight: '500',
                     margin: '0'
                   }}>
-                    @
+                    @wildbird_agency
                   </p>
                 </div>
               </a>

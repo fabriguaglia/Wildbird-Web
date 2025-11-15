@@ -82,7 +82,7 @@ const Footer = () => {
               <a href="https://www.facebook.com/share/1D5w2CnTD7/?mibextid=wwXIfr" aria-label="Facebook">
                 <Facebook size={24} className="footer-icon" />
               </a>
-              <a href="#instagram" aria-label="Instagram">
+              <a href="https://www.instagram.com/wildbird_agency/?utm_source=ig_web_button_share_sheet" aria-label="Instagram">
                 <Instagram size={24} className="footer-icon" />
               </a>
               <a href="#linkedin" aria-label="LinkedIn">
