@@ -107,7 +107,7 @@ const Home = () => {
             <div className="col-md-2 d-flex gap-3 hide-mobile">
               <a href='https://www.facebook.com/share/1D5w2CnTD7/?mibextid=wwXIfr'><Facebook size={20} className="social-icon" /></a>
               <a href='https://www.instagram.com/wildbird_agency/?utm_source=ig_web_button_share_sheet'><Instagram size={20} className="social-icon" /></a>
-              <a href='/'><Linkedin size={20} className="social-icon" /></a>
+              <a href='https://www.linkedin.com/in/luhuergo?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app'><Linkedin size={20} className="social-icon" /></a>
             </div>
             <div className="col-12 col-md-8 text-center">
                 <a href='/'>

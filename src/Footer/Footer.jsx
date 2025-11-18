@@ -85,7 +85,7 @@ const Footer = () => {
               <a href="https://www.instagram.com/wildbird_agency/?utm_source=ig_web_button_share_sheet" aria-label="Instagram">
                 <Instagram size={24} className="footer-icon" />
               </a>
-              <a href="#linkedin" aria-label="LinkedIn">
+              <a href="https://www.linkedin.com/in/luhuergo?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" aria-label="LinkedIn">
                 <Linkedin size={24} className="footer-icon" />
               </a>
             </div>
